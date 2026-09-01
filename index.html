@@ -9,17 +9,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#101B3D;
-    --bg-panel:#16224E;
-    --bg-panel-2:#1C2C5F;
+    --bg:#04331F;
+    --bg-panel:#06422A;
+    --bg-panel-2:#0A5236;
     --grid-line:rgba(255,255,255,0.045);
     --border:rgba(255,255,255,0.14);
     --border-strong:rgba(255,255,255,0.26);
-    --text:#F6F7FC;
-    --text-dim:#B6C0E2;
-    --text-faint:#7784B0;
-    --accent:#FF5A36;
-    --accent-soft:rgba(255,90,54,0.18);
+    --text:#F6FBF8;
+    --text-dim:#B7D9C9;
+    --text-faint:#6E9985;
+    --accent:#F42A41;
+    --accent-soft:rgba(244,42,65,0.18);
     --font-display:'Space Grotesk','Archivo','Helvetica Neue',Arial,sans-serif;
     --font-body:'IBM Plex Sans','Inter',-apple-system,BlinkMacSystemFont,sans-serif;
     --font-mono:'IBM Plex Mono','SFMono-Regular',Menlo,Consolas,monospace;
@@ -27,17 +27,17 @@
     --maxw-read:700px;
   }
   html.light{
-    --bg:#F3F5FC;
-    --bg-panel:#E7EBF8;
-    --bg-panel-2:#DAE1F4;
-    --grid-line:rgba(16,27,61,0.05);
-    --border:rgba(16,27,61,0.14);
-    --border-strong:rgba(16,27,61,0.26);
-    --text:#101B3D;
-    --text-dim:#3C4A80;
-    --text-faint:#6B77A6;
-    --accent:#E8451F;
-    --accent-soft:rgba(232,69,31,0.12);
+    --bg:#F2F8F5;
+    --bg-panel:#E4F0EA;
+    --bg-panel-2:#D5E7DE;
+    --grid-line:rgba(4,51,31,0.05);
+    --border:rgba(4,51,31,0.14);
+    --border-strong:rgba(4,51,31,0.26);
+    --text:#04331F;
+    --text-dim:#2F5F49;
+    --text-faint:#5C8874;
+    --accent:#D81830;
+    --accent-soft:rgba(216,24,48,0.12);
   }
   *{box-sizing:border-box;margin:0;padding:0;}
   html{scroll-behavior:smooth;}
@@ -136,12 +136,18 @@
   .btn.ghost:hover{border-color:var(--accent);color:var(--accent);}
 
   /* title block panel */
-  .title-block{border:1px solid var(--border-strong);border-top:2px solid var(--accent);position:relative;}
+  .title-block{border:1px solid var(--border-strong);border-top:2px solid var(--accent);background:var(--bg);position:relative;}
   .tb-row{display:grid;grid-template-columns:34% 66%;border-bottom:1px solid var(--border);}
   .tb-row:last-child{border-bottom:none;}
   .tb-label{font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;color:var(--text-faint);text-transform:uppercase;padding:12px 14px;border-right:1px solid var(--border);}
   .tb-value{font-size:14px;padding:12px 14px;color:var(--text);}
   .tb-value a:hover{color:var(--accent);}
+
+  /* hero 3D strip */
+  .hero-3d-wrap{margin-top:48px;position:relative;}
+  #hero3d{width:100%;height:260px;display:block;}
+  .hero-3d-caption{font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;color:var(--text-faint);margin-top:10px;}
+  @media (max-width:820px){#hero3d{height:190px;}}
 
   /* ---------- ABOUT ---------- */
   .about-text{color:var(--text-dim);font-size:16.5px;}
@@ -283,6 +289,10 @@
         <div class="tb-row"><div class="tb-label">Experience</div><div class="tb-value">6+ years</div></div>
         <div class="tb-row"><div class="tb-label">Email</div><div class="tb-value"><a href="mailto:mhaque141093@bscse.uiu.ac.bd">mhaque141093@bscse.uiu.ac.bd</a></div></div>
       </div>
+    </div>
+    <div class="wrap hero-3d-wrap">
+      <canvas id="hero3d" aria-hidden="true"></canvas>
+      <div class="hero-3d-caption">FIG. 01 — SERVICE MESH, 12 NODES</div>
     </div>
   </section>
 
@@ -551,7 +561,77 @@
   const themeBtn = document.getElementById('themeBtn');
   themeBtn.addEventListener('click', () => {
     document.documentElement.classList.toggle('light');
+    applyHero3dTheme();
   });
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+  let wireMat, nodeMat;
+
+  function applyHero3dTheme(){
+    if(!wireMat || !nodeMat) return;
+    const styles = getComputedStyle(document.documentElement);
+    wireMat.color.set(styles.getPropertyValue('--text-faint').trim());
+    nodeMat.color.set(styles.getPropertyValue('--accent').trim());
+  }
+
+  (function initHero3d(){
+    const canvas = document.getElementById('hero3d');
+    if(!canvas || typeof THREE === 'undefined') return;
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
+    camera.position.set(0, 0, 7);
+
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+
+    const group = new THREE.Group();
+
+    const shellGeo = new THREE.IcosahedronGeometry(2.4, 1);
+    const wireGeo = new THREE.WireframeGeometry(shellGeo);
+    wireMat = new THREE.LineBasicMaterial({ color: 0x6E9985, transparent: true, opacity: 0.55 });
+    group.add(new THREE.LineSegments(wireGeo, wireMat));
+
+    const nodeGeo = new THREE.IcosahedronGeometry(2.4, 0);
+    const positions = nodeGeo.attributes.position;
+    nodeMat = new THREE.MeshBasicMaterial({ color: 0xF42A41 });
+    for (let i = 0; i < positions.count; i++){
+      const node = new THREE.Mesh(new THREE.SphereGeometry(0.06, 12, 12), nodeMat);
+      node.position.set(positions.getX(i), positions.getY(i), positions.getZ(i));
+      group.add(node);
+    }
+
+    scene.add(group);
+    applyHero3dTheme();
+
+    function resize(){
+      const rect = canvas.getBoundingClientRect();
+      const w = rect.width || 1;
+      const h = rect.height || 1;
+      renderer.setSize(w, h, false);
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    if (reduceMotion){
+      group.rotation.set(0.3, 0.5, 0);
+      renderer.render(scene, camera);
+      return;
+    }
+
+    function tick(t){
+      group.rotation.y += 0.0028;
+      group.rotation.x = Math.sin((t || 0) * 0.0003) * 0.18;
+      renderer.render(scene, camera);
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  })();
 </script>
 
 </body>
