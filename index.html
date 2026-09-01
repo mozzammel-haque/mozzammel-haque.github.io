@@ -9,17 +9,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#0A2540;
-    --bg-panel:#0F2E52;
-    --bg-panel-2:#123563;
-    --grid-line:rgba(224,231,240,0.07);
-    --border:rgba(224,231,240,0.16);
-    --border-strong:rgba(224,231,240,0.28);
-    --text:#EDF1F5;
-    --text-dim:#A9BAD0;
-    --text-faint:#6E88A8;
-    --accent:#E8492F;
-    --accent-soft:rgba(232,73,47,0.15);
+    --bg:#101B3D;
+    --bg-panel:#16224E;
+    --bg-panel-2:#1C2C5F;
+    --grid-line:rgba(255,255,255,0.045);
+    --border:rgba(255,255,255,0.14);
+    --border-strong:rgba(255,255,255,0.26);
+    --text:#F6F7FC;
+    --text-dim:#B6C0E2;
+    --text-faint:#7784B0;
+    --accent:#FF5A36;
+    --accent-soft:rgba(255,90,54,0.18);
     --font-display:'Space Grotesk','Archivo','Helvetica Neue',Arial,sans-serif;
     --font-body:'IBM Plex Sans','Inter',-apple-system,BlinkMacSystemFont,sans-serif;
     --font-mono:'IBM Plex Mono','SFMono-Regular',Menlo,Consolas,monospace;
@@ -27,17 +27,17 @@
     --maxw-read:700px;
   }
   html.light{
-    --bg:#E7EAEE;
-    --bg-panel:#DEE3E9;
-    --bg-panel-2:#D2D9E1;
-    --grid-line:rgba(10,37,64,0.08);
-    --border:rgba(10,37,64,0.16);
-    --border-strong:rgba(10,37,64,0.3);
-    --text:#0A2540;
-    --text-dim:#2B4A6E;
-    --text-faint:#5A7594;
-    --accent:#C93A22;
-    --accent-soft:rgba(201,58,34,0.12);
+    --bg:#F3F5FC;
+    --bg-panel:#E7EBF8;
+    --bg-panel-2:#DAE1F4;
+    --grid-line:rgba(16,27,61,0.05);
+    --border:rgba(16,27,61,0.14);
+    --border-strong:rgba(16,27,61,0.26);
+    --text:#101B3D;
+    --text-dim:#3C4A80;
+    --text-faint:#6B77A6;
+    --accent:#E8451F;
+    --accent-soft:rgba(232,69,31,0.12);
   }
   *{box-sizing:border-box;margin:0;padding:0;}
   html{scroll-behavior:smooth;}
@@ -136,18 +136,12 @@
   .btn.ghost:hover{border-color:var(--accent);color:var(--accent);}
 
   /* title block panel */
-  .title-block{border:1px solid var(--border-strong);position:relative;}
+  .title-block{border:1px solid var(--border-strong);border-top:2px solid var(--accent);position:relative;}
   .tb-row{display:grid;grid-template-columns:34% 66%;border-bottom:1px solid var(--border);}
   .tb-row:last-child{border-bottom:none;}
   .tb-label{font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;color:var(--text-faint);text-transform:uppercase;padding:12px 14px;border-right:1px solid var(--border);}
   .tb-value{font-size:14px;padding:12px 14px;color:var(--text);}
   .tb-value a:hover{color:var(--accent);}
-  .tb-frame-svg{position:absolute;inset:-1px;pointer-events:none;}
-  .tb-frame-svg rect{fill:none;stroke:var(--accent);stroke-width:1.5;stroke-dasharray:900;stroke-dashoffset:900;animation:draw 1.6s ease forwards .2s;}
-  @keyframes draw{to{stroke-dashoffset:0;}}
-  @media (prefers-reduced-motion: reduce){
-    .tb-frame-svg rect{animation:none;stroke-dashoffset:0;}
-  }
 
   /* ---------- ABOUT ---------- */
   .about-text{color:var(--text-dim);font-size:16.5px;}
@@ -282,7 +276,6 @@
         </div>
       </div>
       <div class="title-block">
-        <svg class="tb-frame-svg" viewBox="0 0 100 200" preserveAspectRatio="none"><rect x="1" y="1" width="98" height="198"/></svg>
         <div class="tb-row"><div class="tb-label">Role</div><div class="tb-value">Senior React Native Engineer</div></div>
         <div class="tb-row"><div class="tb-label">Company</div><div class="tb-value">Arogga Limited</div></div>
         <div class="tb-row"><div class="tb-label">Location</div><div class="tb-value">Dhaka, Bangladesh</div></div>
