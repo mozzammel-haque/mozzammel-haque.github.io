@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Muhammad Mozzammel Haque — Senior React Native Engineer</title>
+<meta name="description" content="Portfolio of Muhammad Mozzammel Haque, Senior React Native Engineer based in Dhaka, Bangladesh.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0A2540;
+    --bg-panel:#0F2E52;
+    --bg-panel-2:#123563;
+    --grid-line:rgba(224,231,240,0.07);
+    --border:rgba(224,231,240,0.16);
+    --border-strong:rgba(224,231,240,0.28);
+    --text:#EDF1F5;
+    --text-dim:#A9BAD0;
+    --text-faint:#6E88A8;
+    --accent:#E8492F;
+    --accent-soft:rgba(232,73,47,0.15);
+    --font-display:'Space Grotesk','Archivo','Helvetica Neue',Arial,sans-serif;
+    --font-body:'IBM Plex Sans','Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    --font-mono:'IBM Plex Mono','SFMono-Regular',Menlo,Consolas,monospace;
+    --maxw:1120px;
+    --maxw-read:700px;
+  }
+  html.light{
+    --bg:#E7EAEE;
+    --bg-panel:#DEE3E9;
+    --bg-panel-2:#D2D9E1;
+    --grid-line:rgba(10,37,64,0.08);
+    --border:rgba(10,37,64,0.16);
+    --border-strong:rgba(10,37,64,0.3);
+    --text:#0A2540;
+    --text-dim:#2B4A6E;
+    --text-faint:#5A7594;
+    --accent:#C93A22;
+    --accent-soft:rgba(201,58,34,0.12);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--font-body);
+    font-size:16px;
+    line-height:1.6;
+    background-image:
+      repeating-linear-gradient(0deg, var(--grid-line) 0px, var(--grid-line) 1px, transparent 1px, transparent 40px),
+      repeating-linear-gradient(90deg, var(--grid-line) 0px, var(--grid-line) 1px, transparent 1px, transparent 40px);
+    transition:background-color .25s ease, color .25s ease;
+  }
+  a{color:inherit;text-decoration:none;}
+  ::selection{background:var(--accent);color:#fff;}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+  img,svg{display:block;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
+  .read{max-width:var(--maxw-read);}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border);
+  }
+  .navbar{display:flex;align-items:center;justify-content:space-between;height:64px;}
+  .brand{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:700;font-size:15px;letter-spacing:.02em;}
+  .brand .mark{
+    width:32px;height:32px;border:1px solid var(--border-strong);
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--font-mono);font-size:11px;color:var(--accent);
+  }
+  nav.links{display:flex;gap:28px;font-size:14px;color:var(--text-dim);}
+  nav.links a{padding:4px 0;border-bottom:1px solid transparent;transition:color .15s, border-color .15s;}
+  nav.links a:hover{color:var(--text);border-color:var(--accent);}
+  .nav-right{display:flex;align-items:center;gap:14px;}
+  .theme-btn{
+    width:34px;height:34px;border:1px solid var(--border);background:transparent;
+    display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text-dim);
+    transition:border-color .15s, color .15s;
+  }
+  .theme-btn:hover{color:var(--text);border-color:var(--border-strong);}
+  .menu-btn{display:none;width:34px;height:34px;border:1px solid var(--border);background:transparent;cursor:pointer;color:var(--text);align-items:center;justify-content:center;}
+  .mobile-panel{display:none;flex-direction:column;gap:2px;padding:8px 28px 20px;border-bottom:1px solid var(--border);}
+  .mobile-panel a{padding:10px 0;font-size:15px;color:var(--text-dim);border-bottom:1px solid var(--grid-line);}
+  .mobile-panel.open{display:flex;}
+
+  @media (max-width:820px){
+    nav.links{display:none;}
+    .menu-btn{display:flex;}
+  }
+
+  /* ---------- SHEET / SECTION SHELL ---------- */
+  .sheet{padding:88px 0;border-bottom:1px solid var(--border);position:relative;}
+  .sheet:last-of-type{border-bottom:none;}
+  .sheet::before, .sheet::after{
+    content:"";position:absolute;width:14px;height:14px;
+    border-left:1px solid var(--border-strong);border-top:1px solid var(--border-strong);
+    top:40px;left:8px;
+  }
+  .sheet::after{left:auto;right:8px;transform:rotate(90deg);}
+  h2.sheet-title{
+    font-family:var(--font-display);font-weight:600;font-size:clamp(24px,3vw,32px);
+    display:flex;align-items:baseline;gap:14px;margin-bottom:14px;
+  }
+  h2.sheet-title .no{font-family:var(--font-mono);font-size:15px;color:var(--accent);font-weight:500;}
+  .kicker{font-family:var(--font-mono);font-size:12px;letter-spacing:.08em;color:var(--text-faint);text-transform:uppercase;margin-bottom:6px;}
+
+  /* ---------- HERO ---------- */
+  .hero{padding-top:72px;padding-bottom:88px;}
+  .hero-grid{display:grid;grid-template-columns:1.35fr 1fr;gap:56px;align-items:start;}
+  @media (max-width:820px){.hero-grid{grid-template-columns:1fr;gap:40px;}}
+  .avail{
+    display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);
+    font-size:12px;color:var(--text-dim);border:1px solid var(--border);padding:6px 12px;margin-bottom:26px;
+  }
+  .avail .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);}
+  h1{
+    font-family:var(--font-display);font-weight:700;
+    font-size:clamp(38px,6vw,64px);line-height:1.04;letter-spacing:-0.01em;
+    margin-bottom:18px;
+  }
+  .role-line{font-family:var(--font-display);font-size:clamp(18px,2.4vw,24px);color:var(--text-dim);margin-bottom:22px;}
+  .lede{color:var(--text-dim);font-size:17px;max-width:52ch;margin-bottom:32px;}
+  .cta-row{display:flex;gap:14px;flex-wrap:wrap;}
+  .btn{
+    font-family:var(--font-body);font-size:14px;font-weight:500;padding:12px 20px;
+    border:1px solid var(--border-strong);transition:border-color .15s, background .15s, color .15s;
+  }
+  .btn.primary{background:var(--accent);border-color:var(--accent);color:#fff;}
+  .btn.primary:hover{background:transparent;color:var(--accent);}
+  .btn.ghost{color:var(--text);}
+  .btn.ghost:hover{border-color:var(--accent);color:var(--accent);}
+
+  /* title block panel */
+  .title-block{border:1px solid var(--border-strong);position:relative;}
+  .tb-row{display:grid;grid-template-columns:34% 66%;border-bottom:1px solid var(--border);}
+  .tb-row:last-child{border-bottom:none;}
+  .tb-label{font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;color:var(--text-faint);text-transform:uppercase;padding:12px 14px;border-right:1px solid var(--border);}
+  .tb-value{font-size:14px;padding:12px 14px;color:var(--text);}
+  .tb-value a:hover{color:var(--accent);}
+  .tb-frame-svg{position:absolute;inset:-1px;pointer-events:none;}
+  .tb-frame-svg rect{fill:none;stroke:var(--accent);stroke-width:1.5;stroke-dasharray:900;stroke-dashoffset:900;animation:draw 1.6s ease forwards .2s;}
+  @keyframes draw{to{stroke-dashoffset:0;}}
+  @media (prefers-reduced-motion: reduce){
+    .tb-frame-svg rect{animation:none;stroke-dashoffset:0;}
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about-text{color:var(--text-dim);font-size:16.5px;}
+  .about-text p + p{margin-top:16px;}
+  .about-text strong{color:var(--text);font-weight:600;}
+
+  /* ---------- FOCUS ---------- */
+  .focus-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-top:10px;}
+  @media (max-width:820px){.focus-grid{grid-template-columns:1fr;}}
+  .focus-card{background:var(--bg);padding:30px 26px;}
+  .focus-card h3{font-family:var(--font-display);font-size:19px;margin-bottom:10px;}
+  .focus-card p{color:var(--text-dim);font-size:14.5px;margin-bottom:14px;}
+  .focus-card ul{list-style:none;font-family:var(--font-mono);font-size:12.5px;color:var(--text-faint);display:flex;flex-wrap:wrap;gap:8px 0;}
+  .focus-card li:not(:last-child)::after{content:" · ";color:var(--text-faint);}
+
+  /* ---------- EXPERIENCE ---------- */
+  .timeline{border-left:1px solid var(--border-strong);margin-top:12px;}
+  .tl-item{position:relative;padding:0 0 40px 30px;}
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-item::before{
+    content:"";position:absolute;left:-5px;top:4px;width:9px;height:9px;border-radius:50%;
+    background:var(--bg);border:2px solid var(--text-faint);
+  }
+  .tl-item.current::before{border-color:var(--accent);background:var(--accent);}
+  .tl-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px;margin-bottom:6px;}
+  .tl-role{font-family:var(--font-display);font-weight:600;font-size:18px;}
+  .tl-org{color:var(--text-dim);font-size:14.5px;}
+  .tl-date{font-family:var(--font-mono);font-size:12px;color:var(--text-faint);margin-left:auto;white-space:nowrap;}
+  .tl-current-tag{font-family:var(--font-mono);font-size:10.5px;color:var(--accent);border:1px solid var(--accent);padding:2px 7px;letter-spacing:.05em;}
+  .tl-bullets{list-style:none;color:var(--text-dim);font-size:14.5px;}
+  .tl-bullets li{position:relative;padding-left:16px;margin-top:6px;}
+  .tl-bullets li::before{content:"–";position:absolute;left:0;color:var(--text-faint);}
+
+  .edu-block{margin-top:44px;border-top:1px dashed var(--border);padding-top:28px;}
+  .edu-block h4{font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--text-faint);margin-bottom:10px;}
+  .edu-block .deg{font-family:var(--font-display);font-size:17px;font-weight:600;}
+  .edu-block .school{color:var(--text-dim);font-size:14.5px;margin-top:2px;}
+  .edu-block .date{font-family:var(--font-mono);font-size:12px;color:var(--text-faint);margin-top:4px;}
+
+  /* ---------- STACK ---------- */
+  .stack-groups{display:grid;grid-template-columns:1fr 1fr;gap:30px 50px;margin-top:14px;}
+  @media (max-width:640px){.stack-groups{grid-template-columns:1fr;}}
+  .stack-group h4{font-family:var(--font-mono);font-size:11.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--text-faint);margin-bottom:12px;}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;}
+  .tag{font-family:var(--font-mono);font-size:12.5px;padding:6px 10px;border:1px solid var(--border);color:var(--text-dim);transition:border-color .15s,color .15s;}
+  .tag:hover{border-color:var(--accent);color:var(--accent);}
+
+  /* ---------- PROJECTS ---------- */
+  .proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);margin-top:10px;}
+  @media (max-width:720px){.proj-grid{grid-template-columns:1fr;}}
+  .proj-card{background:var(--bg);padding:26px;display:flex;flex-direction:column;min-height:170px;}
+  .proj-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;}
+  .proj-id{font-family:var(--font-mono);font-size:11px;color:var(--text-faint);}
+  .proj-card h3{font-family:var(--font-display);font-size:18px;margin-bottom:6px;}
+  .proj-org{font-size:13px;color:var(--text-faint);margin-bottom:10px;}
+  .proj-desc{color:var(--text-dim);font-size:14px;margin-bottom:14px;flex:1;}
+  .proj-link{font-family:var(--font-mono);font-size:12.5px;color:var(--accent);align-self:flex-start;border-bottom:1px solid transparent;}
+  .proj-link:hover{border-color:var(--accent);}
+
+  /* ---------- WRITING ---------- */
+  .write-list{margin-top:14px;border-top:1px solid var(--border);}
+  .write-item{display:flex;gap:24px;padding:22px 0;border-bottom:1px solid var(--border);align-items:baseline;flex-wrap:wrap;}
+  .write-date{font-family:var(--font-mono);font-size:12px;color:var(--text-faint);width:76px;flex-shrink:0;}
+  .write-title{font-family:var(--font-display);font-size:16.5px;font-weight:600;flex:1;min-width:200px;}
+  .write-title:hover{color:var(--accent);}
+  .write-tag{font-family:var(--font-mono);font-size:11px;color:var(--text-faint);border:1px solid var(--border);padding:3px 8px;}
+  .pub-note{margin-top:26px;padding-top:22px;border-top:1px dashed var(--border);font-size:14px;color:var(--text-dim);}
+  .pub-note a:hover{color:var(--accent);}
+
+  /* ---------- CONTACT ---------- */
+  .contact-grid{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--border-strong);margin-top:10px;}
+  @media (max-width:820px){.contact-grid{grid-template-columns:1fr 1fr;}}
+  .c-field{padding:18px 18px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);}
+  .c-field:nth-child(4n){border-right:none;}
+  @media (max-width:820px){.c-field:nth-child(2n){border-right:none;}}
+  .c-label{font-family:var(--font-mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--text-faint);margin-bottom:8px;}
+  .c-value{font-size:14px;}
+  .c-value a:hover{color:var(--accent);}
+
+  footer{padding:36px 0;}
+  .foot-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-family:var(--font-mono);font-size:11.5px;color:var(--text-faint);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap navbar">
+    <div class="brand"><span class="mark">MMH</span> Mozzammel Haque</div>
+    <nav class="links">
+      <a href="#about">About</a>
+      <a href="#focus">Focus</a>
+      <a href="#experience">Experience</a>
+      <a href="#stack">Stack</a>
+      <a href="#projects">Projects</a>
+      <a href="#writing">Writing</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-right">
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle light and dark theme">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>
+      </button>
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-panel" id="mobilePanel">
+    <a href="#about">About</a>
+    <a href="#focus">Focus</a>
+    <a href="#experience">Experience</a>
+    <a href="#stack">Stack</a>
+    <a href="#projects">Projects</a>
+    <a href="#writing">Writing</a>
+    <a href="#contact">Contact</a>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="sheet hero" id="home">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="avail"><span class="dot"></span>SHEET 01 — PROFILE</div>
+        <h1>Muhammad<br>Mozzammel Haque</h1>
+        <div class="role-line">Senior React Native Engineer</div>
+        <p class="lede">Building mobile and web products end-to-end — from native performance work down to the microservices behind them. Based in Dhaka, Bangladesh.</p>
+        <div class="cta-row">
+          <a class="btn primary" href="#contact">Get in touch</a>
+          <a class="btn ghost" href="https://github.com/mozzammeluiu" target="_blank" rel="noopener">View GitHub</a>
+          <a class="btn ghost" href="https://medium.com/@mozzammeluiu" target="_blank" rel="noopener">Read Medium</a>
+        </div>
+      </div>
+      <div class="title-block">
+        <svg class="tb-frame-svg" viewBox="0 0 100 200" preserveAspectRatio="none"><rect x="1" y="1" width="98" height="198"/></svg>
+        <div class="tb-row"><div class="tb-label">Role</div><div class="tb-value">Senior React Native Engineer</div></div>
+        <div class="tb-row"><div class="tb-label">Company</div><div class="tb-value">Arogga Limited</div></div>
+        <div class="tb-row"><div class="tb-label">Location</div><div class="tb-value">Dhaka, Bangladesh</div></div>
+        <div class="tb-row"><div class="tb-label">Focus</div><div class="tb-value">Mobile · Backend · Systems</div></div>
+        <div class="tb-row"><div class="tb-label">Experience</div><div class="tb-value">6+ years</div></div>
+        <div class="tb-row"><div class="tb-label">Email</div><div class="tb-value"><a href="mailto:mhaque141093@bscse.uiu.ac.bd">mhaque141093@bscse.uiu.ac.bd</a></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="sheet" id="about">
+    <div class="wrap read">
+      <h2 class="sheet-title"><span class="no">02</span>About</h2>
+      <div class="about-text">
+        <p>I'm a <strong>Senior React Native Engineer</strong> with 6+ years of experience shipping production mobile and web applications. My work sits across two layers: the native mobile surface — performance, stability, platform quirks — and the backend systems that support it, including microservices, service communication patterns, and API design.</p>
+        <p>I'm currently building at <strong>Arogga Limited</strong> in Dhaka, leading front-end architecture for a healthcare app used across Android and iOS. Earlier, at <strong>Circle Fintech Limited</strong>, I led a front-end team building a fintech platform and a digital banking app for Jamuna Bank.</p>
+        <p>Outside of day-to-day engineering, I write on Medium about React Native, AI-assisted development, and system design — usually working through a real problem I've run into rather than covering a topic in the abstract.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOCUS -->
+  <section class="sheet" id="focus">
+    <div class="wrap">
+      <h2 class="sheet-title"><span class="no">03</span>What I build</h2>
+      <div class="focus-grid">
+        <div class="focus-card">
+          <h3>Mobile</h3>
+          <p>React Native apps for Android and iOS, with attention to native performance, crash reduction, and platform-specific debugging.</p>
+          <ul><li>React Native</li><li>Redux</li><li>New Architecture</li><li>On-device AI</li></ul>
+        </div>
+        <div class="focus-card">
+          <h3>Backend &amp; architecture</h3>
+          <p>Microservices and the patterns that keep them reliable — service communication, failure handling, and event-driven design.</p>
+          <ul><li>Node.js</li><li>NestJS</li><li>GraphQL</li><li>Kafka</li><li>gRPC</li><li>Docker</li></ul>
+        </div>
+        <div class="focus-card">
+          <h3>Web</h3>
+          <p>Typed, componentized front ends built to scale with a growing team and codebase.</p>
+          <ul><li>React</li><li>Next.js</li><li>TypeScript</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="sheet" id="experience">
+    <div class="wrap read">
+      <h2 class="sheet-title"><span class="no">04</span>Experience</h2>
+      <div class="timeline">
+
+        <div class="tl-item current">
+          <div class="tl-head">
+            <span class="tl-role">Senior React Native Engineer</span>
+            <span class="tl-current-tag">CURRENT</span>
+            <span class="tl-date">Jan 2024 — Present</span>
+          </div>
+          <div class="tl-org">Arogga Limited, Dhaka, Bangladesh</div>
+          <ul class="tl-bullets">
+            <li>Architected the Arogga app front end for Android and iOS, cutting crash- and delay-related complaints by 30% through performance work.</li>
+            <li>Used Redux for state management to keep the app responsive and stable at scale.</li>
+            <li>Led a team of 5 designers and developers to ship 3 mobile apps in 6 months — 25% faster time-to-market.</li>
+          </ul>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-head">
+            <span class="tl-role">Senior Software Engineer</span>
+            <span class="tl-date">Apr 2022 — Jan 2024</span>
+          </div>
+          <div class="tl-org">Circle Fintech Limited, Dhaka, Bangladesh</div>
+          <ul class="tl-bullets">
+            <li>Led the front-end team, running code reviews and setting development process standards.</li>
+            <li>Built the platform front end with React, GraphQL, and TypeScript.</li>
+            <li>Contributed to JustPay, a React Native banking app for Jamuna Bank.</li>
+          </ul>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-head">
+            <span class="tl-role">Software Engineer</span>
+            <span class="tl-date">Sep 2020 — Mar 2022</span>
+          </div>
+          <div class="tl-org">Circle Fintech Limited, Dhaka, Bangladesh</div>
+          <ul class="tl-bullets">
+            <li>Increased app store ratings by 15% through consistent UX and performance improvements.</li>
+            <li>Planned component architecture for predictable, scalable app behavior.</li>
+          </ul>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-head">
+            <span class="tl-role">Software Engineer</span>
+            <span class="tl-date">Nov 2019 — Aug 2020</span>
+          </div>
+          <div class="tl-org">Advanced Apps Bangladesh, Dhaka, Bangladesh</div>
+          <ul class="tl-bullets">
+            <li>Shipped a feature that lifted user engagement by 30%, improving retention.</li>
+            <li>Integrated multiple payment gateways, including PayPal, Paytm, and Razorpay.</li>
+          </ul>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-head">
+            <span class="tl-role">Software Developer</span>
+            <span class="tl-date">Nov 2017 — Oct 2018</span>
+          </div>
+          <div class="tl-org">Network Express of Professionals Ltd. (Netexpro), Dhaka, Bangladesh</div>
+          <ul class="tl-bullets">
+            <li>Optimized user interfaces, cutting page load times by 40%.</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="edu-block">
+        <h4>Education</h4>
+        <div class="deg">B.Sc. in Computer Science &amp; Engineering</div>
+        <div class="school">United International University, Dhaka, Bangladesh</div>
+        <div class="date">Feb 2014 — Dec 2019</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STACK -->
+  <section class="sheet" id="stack">
+    <div class="wrap">
+      <h2 class="sheet-title"><span class="no">05</span>Stack</h2>
+      <div class="stack-groups">
+        <div class="stack-group">
+          <h4>Languages</h4>
+          <div class="tags"><span class="tag">TypeScript</span><span class="tag">JavaScript</span><span class="tag">PHP</span></div>
+        </div>
+        <div class="stack-group">
+          <h4>Mobile</h4>
+          <div class="tags"><span class="tag">React Native</span><span class="tag">Redux</span></div>
+        </div>
+        <div class="stack-group">
+          <h4>Web</h4>
+          <div class="tags"><span class="tag">React</span><span class="tag">Next.js</span></div>
+        </div>
+        <div class="stack-group">
+          <h4>Backend</h4>
+          <div class="tags"><span class="tag">Node.js</span><span class="tag">NestJS</span><span class="tag">Laravel</span><span class="tag">Lumen</span><span class="tag">GraphQL</span><span class="tag">gRPC</span><span class="tag">Kafka</span></div>
+        </div>
+        <div class="stack-group">
+          <h4>Data</h4>
+          <div class="tags"><span class="tag">MySQL</span><span class="tag">MongoDB</span><span class="tag">PostgreSQL</span><span class="tag">Redis</span></div>
+        </div>
+        <div class="stack-group">
+          <h4>Infra &amp; tooling</h4>
+          <div class="tags"><span class="tag">Docker</span><span class="tag">Nx</span><span class="tag">Git</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="sheet" id="projects">
+    <div class="wrap">
+      <h2 class="sheet-title"><span class="no">06</span>Projects</h2>
+      <div class="proj-grid">
+
+        <div class="proj-card">
+          <div class="proj-top"><span class="proj-id">P-01</span></div>
+          <h3>Arogga App</h3>
+          <div class="proj-org">Arogga Limited</div>
+          <p class="proj-desc">Online medicine ordering app for Android and iOS. Led front-end architecture, UI, and API integration.</p>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-top"><span class="proj-id">P-02</span></div>
+          <h3>JustPay App</h3>
+          <div class="proj-org">Circle Fintech Limited, for Jamuna Bank</div>
+          <p class="proj-desc">Digital banking app built with React Native. Contributed UI design and feature/API development.</p>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-top"><span class="proj-id">P-03</span></div>
+          <h3>Online Shopping in Nepal</h3>
+          <div class="proj-org">Advanced Apps Bangladesh</div>
+          <p class="proj-desc">E-commerce platform. Contributed UI design and feature/API development and integration.</p>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-top"><span class="proj-id">P-04</span></div>
+          <h3>App Bajar</h3>
+          <div class="proj-org">Advanced Apps Bangladesh</div>
+          <p class="proj-desc">App marketplace website. Contributed UI design and feature/API development and integration.</p>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-top"><span class="proj-id">OSS</span></div>
+          <h3>connect-rn-components</h3>
+          <div class="proj-org">Published npm package</div>
+          <p class="proj-desc">Open-source React Native component library published under @appscftl.</p>
+          <a class="proj-link" href="https://www.npmjs.com/package/@appscftl/connect-rn-components" target="_blank" rel="noopener">npmjs.com/package/@appscftl/connect-rn-components</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- WRITING -->
+  <section class="sheet" id="writing">
+    <div class="wrap read">
+      <h2 class="sheet-title"><span class="no">07</span>Writing</h2>
+      <p style="color:var(--text-dim);font-size:15px;">Notes on React Native, AI-assisted development, and system design, published on Medium.</p>
+
+      <div class="write-list">
+        <div class="write-item">
+          <span class="write-date">Jul 2026</span>
+          <a class="write-title" href="https://medium.com/@mozzammeluiu/generative-ui-the-react-pattern-thats-replacing-chatbots-in-2026-aded6ed32e26" target="_blank" rel="noopener">Generative UI: The React Pattern That's Replacing Chatbots in 2026</a>
+          <span class="write-tag">React</span>
+        </div>
+        <div class="write-item">
+          <span class="write-date">Jun 2026</span>
+          <a class="write-title" href="https://medium.com/@mozzammeluiu/react-native-ai-agents-the-next-evolution-of-mobile-apps-1d960b6f736c" target="_blank" rel="noopener">React Native + AI Agents: The Next Evolution of Mobile Apps</a>
+          <span class="write-tag">React Native</span>
+        </div>
+        <div class="write-item">
+          <span class="write-date">Jan 2026</span>
+          <a class="write-title" href="https://medium.com/@mozzammeluiu/16-kb-page-size-alignment-in-react-native-2026-what-it-is-and-how-to-fix-it-e9b936610611" target="_blank" rel="noopener">16 KB Page Size Alignment in React Native 2026</a>
+          <span class="write-tag">Android</span>
+        </div>
+      </div>
+
+      <div class="pub-note">
+        <strong style="color:var(--text);">Thesis publication —</strong> <em>Novel Class Detection in Concept Drifting Data Streams Using Decision Tree Leaves</em>, <a href="https://ieeexplore.ieee.org/document/8782911" target="_blank" rel="noopener">IEEE Xplore</a>.
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="sheet" id="contact">
+    <div class="wrap">
+      <h2 class="sheet-title"><span class="no">08</span>Contact</h2>
+      <div class="contact-grid">
+        <div class="c-field"><div class="c-label">Email</div><div class="c-value"><a href="mailto:mhaque141093@bscse.uiu.ac.bd">mhaque141093@bscse.uiu.ac.bd</a></div></div>
+        <div class="c-field"><div class="c-label">LinkedIn</div><div class="c-value"><a href="https://www.linkedin.com/in/muhammad-mozzammel-haque-243a3b104/" target="_blank" rel="noopener">muhammad-mozzammel-haque</a></div></div>
+        <div class="c-field"><div class="c-label">GitHub</div><div class="c-value"><a href="https://github.com/mozzammeluiu" target="_blank" rel="noopener">mozzammeluiu</a></div></div>
+        <div class="c-field"><div class="c-label">GitLab</div><div class="c-value"><a href="https://gitlab.com/mozzammeluiu093" target="_blank" rel="noopener">mozzammeluiu093</a></div></div>
+        <div class="c-field"><div class="c-label">Medium</div><div class="c-value"><a href="https://medium.com/@mozzammeluiu" target="_blank" rel="noopener">@mozzammeluiu</a></div></div>
+        <div class="c-field"><div class="c-label">Location</div><div class="c-value">Dhaka, Bangladesh</div></div>
+        <div class="c-field"><div class="c-label">Role</div><div class="c-value">Senior React Native Engineer</div></div>
+        <div class="c-field"><div class="c-label">Availability</div><div class="c-value">Open to relevant opportunities</div></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot-row">
+    <span>© 2026 MUHAMMAD MOZZAMMEL HAQUE — DHAKA, BANGLADESH</span>
+    <span>SHEET 08 OF 08</span>
+  </div>
+</footer>
+
+<script>
+  const menuBtn = document.getElementById('menuBtn');
+  const mobilePanel = document.getElementById('mobilePanel');
+  menuBtn.addEventListener('click', () => {
+    const open = mobilePanel.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', open);
+  });
+  mobilePanel.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    mobilePanel.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded', 'false');
+  }));
+
+  const themeBtn = document.getElementById('themeBtn');
+  themeBtn.addEventListener('click', () => {
+    document.documentElement.classList.toggle('light');
+  });
+</script>
+
+</body>
+</html>
