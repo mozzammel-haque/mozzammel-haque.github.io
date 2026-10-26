@@ -1,619 +1,736 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Muhammad Mozzammel Haque — Senior React Native Engineer</title>
-<meta name="description" content="Portfolio of Muhammad Mozzammel Haque, Senior React Native Engineer based in Dhaka, Bangladesh.">
+<title>Muhammad Mozzammel Haque — Full-Stack Engineer &amp; Writer</title>
+<meta name="description" content="Portfolio of Muhammad Mozzammel Haque, a Full-Stack Engineer specializing in React Native, Next.js, Node.js, and Laravel. Based in Dhaka, Bangladesh.">
+<meta name="theme-color" content="#121212">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script>
+  (function(){
+    document.documentElement.classList.add('js');
+    try{
+      var t = localStorage.getItem('mmh-theme');
+      if(t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+    }catch(e){}
+  })();
+</script>
 <style>
   :root{
-    --bg:#04331F;
-    --bg-panel:#06422A;
-    --bg-panel-2:#0A5236;
-    --grid-line:rgba(255,255,255,0.045);
-    --border:rgba(255,255,255,0.14);
-    --border-strong:rgba(255,255,255,0.26);
-    --text:#F6FBF8;
-    --text-dim:#B7D9C9;
-    --text-faint:#6E9985;
-    --accent:#F42A41;
-    --accent-soft:rgba(244,42,65,0.18);
-    --font-display:'Space Grotesk','Archivo','Helvetica Neue',Arial,sans-serif;
-    --font-body:'IBM Plex Sans','Inter',-apple-system,BlinkMacSystemFont,sans-serif;
-    --font-mono:'IBM Plex Mono','SFMono-Regular',Menlo,Consolas,monospace;
-    --maxw:1120px;
-    --maxw-read:700px;
+    --bg:#121212;
+    --card:#1c1c1d;
+    --card-2:#252526;
+    --line:#333336;
+    --text:#d6d6d6;
+    --head:#ffffff;
+    --muted:#8f8f95;
+    --accent:#ffdb70;
+    --accent-ink:#1a1400;
+    --accent-soft:rgba(255,219,112,0.12);
+    --good:#3ddc97;
+    --good-soft:rgba(61,220,151,0.14);
+    --shadow:0 10px 30px rgba(0,0,0,.35);
+    --ff:'Poppins',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+    --r:20px;
+    --r-sm:14px;
   }
-  html.light{
-    --bg:#F2F8F5;
-    --bg-panel:#E4F0EA;
-    --bg-panel-2:#D5E7DE;
-    --grid-line:rgba(4,51,31,0.05);
-    --border:rgba(4,51,31,0.14);
-    --border-strong:rgba(4,51,31,0.26);
-    --text:#04331F;
-    --text-dim:#2F5F49;
-    --text-faint:#5C8874;
-    --accent:#D81830;
-    --accent-soft:rgba(216,24,48,0.12);
+  [data-theme="light"]{
+    --bg:#f3f1ec;
+    --card:#ffffff;
+    --card-2:#f6f4ef;
+    --line:#e3dfd6;
+    --text:#3b3b40;
+    --head:#17171a;
+    --muted:#6f6f78;
+    --accent:#a86a00;
+    --accent-ink:#ffffff;
+    --accent-soft:rgba(168,106,0,0.10);
+    --good:#0a8a5a;
+    --good-soft:rgba(10,138,90,0.12);
+    --shadow:0 10px 30px rgba(60,50,30,.10);
   }
   *{box-sizing:border-box;margin:0;padding:0;}
   html{scroll-behavior:smooth;}
   body{
-    background:var(--bg);
-    color:var(--text);
-    font-family:var(--font-body);
-    font-size:16px;
-    line-height:1.6;
-    background-image:
-      repeating-linear-gradient(0deg, var(--grid-line) 0px, var(--grid-line) 1px, transparent 1px, transparent 40px),
-      repeating-linear-gradient(90deg, var(--grid-line) 0px, var(--grid-line) 1px, transparent 1px, transparent 40px);
-    transition:background-color .25s ease, color .25s ease;
+    background:var(--bg);color:var(--text);font-family:var(--ff);font-size:15px;line-height:1.7;
+    padding:28px 16px 120px;transition:background-color .25s ease,color .25s ease;
   }
   a{color:inherit;text-decoration:none;}
-  ::selection{background:var(--accent);color:#fff;}
-  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
-  img,svg{display:block;}
-  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
-  .read{max-width:var(--maxw-read);}
+  ::selection{background:var(--accent);color:var(--accent-ink);}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px;}
+  svg{display:block;}
+  .page{max-width:880px;margin:0 auto;}
 
-  /* ---------- NAV ---------- */
-  header{
-    position:sticky;top:0;z-index:50;
-    background:color-mix(in srgb, var(--bg) 88%, transparent);
-    backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--border);
+  /* ---------- PROFILE CARD ---------- */
+  .profile{
+    position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+    padding:34px 28px 26px;box-shadow:var(--shadow);margin-bottom:20px;
   }
-  .navbar{display:flex;align-items:center;justify-content:space-between;height:64px;}
-  .brand{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:700;font-size:15px;letter-spacing:.02em;}
-  .brand .mark{
-    width:32px;height:32px;border:1px solid var(--border-strong);
-    display:flex;align-items:center;justify-content:center;
-    font-family:var(--font-mono);font-size:11px;color:var(--accent);
-  }
-  nav.links{display:flex;gap:28px;font-size:14px;color:var(--text-dim);}
-  nav.links a{padding:4px 0;border-bottom:1px solid transparent;transition:color .15s, border-color .15s;}
-  nav.links a:hover{color:var(--text);border-color:var(--accent);}
-  .nav-right{display:flex;align-items:center;gap:14px;}
-  .theme-btn{
-    width:34px;height:34px;border:1px solid var(--border);background:transparent;
-    display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text-dim);
-    transition:border-color .15s, color .15s;
-  }
-  .theme-btn:hover{color:var(--text);border-color:var(--border-strong);}
-  .menu-btn{display:none;width:34px;height:34px;border:1px solid var(--border);background:transparent;cursor:pointer;color:var(--text);align-items:center;justify-content:center;}
-  .mobile-panel{display:none;flex-direction:column;gap:2px;padding:8px 28px 20px;border-bottom:1px solid var(--border);}
-  .mobile-panel a{padding:10px 0;font-size:15px;color:var(--text-dim);border-bottom:1px solid var(--grid-line);}
-  .mobile-panel.open{display:flex;}
-
-  @media (max-width:820px){
-    nav.links{display:none;}
-    .menu-btn{display:flex;}
-  }
-
-  /* ---------- SHEET / SECTION SHELL ---------- */
-  .sheet{padding:88px 0;border-bottom:1px solid var(--border);position:relative;}
-  .sheet:last-of-type{border-bottom:none;}
-  .sheet::before, .sheet::after{
-    content:"";position:absolute;width:14px;height:14px;
-    border-left:1px solid var(--border-strong);border-top:1px solid var(--border-strong);
-    top:40px;left:8px;
-  }
-  .sheet::after{left:auto;right:8px;transform:rotate(90deg);}
-  h2.sheet-title{
-    font-family:var(--font-display);font-weight:600;font-size:clamp(24px,3vw,32px);
-    display:flex;align-items:baseline;gap:14px;margin-bottom:14px;
-  }
-  h2.sheet-title .no{font-family:var(--font-mono);font-size:15px;color:var(--accent);font-weight:500;}
-  .kicker{font-family:var(--font-mono);font-size:12px;letter-spacing:.08em;color:var(--text-faint);text-transform:uppercase;margin-bottom:6px;}
-
-  /* ---------- HERO ---------- */
-  .hero{padding-top:72px;padding-bottom:88px;}
-  .hero-grid{display:grid;grid-template-columns:1.35fr 1fr;gap:56px;align-items:start;}
-  @media (max-width:820px){.hero-grid{grid-template-columns:1fr;gap:40px;}}
   .avail{
-    display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);
-    font-size:12px;color:var(--text-dim);border:1px solid var(--border);padding:6px 12px;margin-bottom:26px;
+    position:absolute;top:-13px;left:50%;transform:translateX(-50%);white-space:nowrap;
+    display:inline-flex;align-items:center;gap:7px;font-size:10.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--good);background:var(--good-soft);border:1px solid color-mix(in srgb,var(--good) 45%,transparent);
+    padding:4px 12px;border-radius:999px;backdrop-filter:blur(6px);
   }
-  .avail .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);}
-  h1{
-    font-family:var(--font-display);font-weight:700;
-    font-size:clamp(38px,6vw,64px);line-height:1.04;letter-spacing:-0.01em;
-    margin-bottom:18px;
+  .avail i{width:7px;height:7px;border-radius:50%;background:var(--good);box-shadow:0 0 0 0 var(--good);animation:pulse 2.2s infinite;}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--good) 55%,transparent);}70%{box-shadow:0 0 0 7px transparent;}100%{box-shadow:0 0 0 0 transparent;}}
+  .profile-main{display:flex;gap:24px;align-items:center;}
+  .avatar{
+    flex:0 0 112px;height:112px;border-radius:28px;display:flex;align-items:center;justify-content:center;
+    font-weight:700;font-size:30px;letter-spacing:.02em;color:var(--accent);
+    background:linear-gradient(135deg,var(--accent-soft),transparent 70%),var(--card-2);
+    border:1px solid color-mix(in srgb,var(--accent) 40%,var(--line));
   }
-  .role-line{font-family:var(--font-display);font-size:clamp(18px,2.4vw,24px);color:var(--text-dim);margin-bottom:22px;}
-  .lede{color:var(--text-dim);font-size:17px;max-width:52ch;margin-bottom:32px;}
-  .cta-row{display:flex;gap:14px;flex-wrap:wrap;}
-  .btn{
-    font-family:var(--font-body);font-size:14px;font-weight:500;padding:12px 20px;
-    border:1px solid var(--border-strong);transition:border-color .15s, background .15s, color .15s;
+  .avatar{overflow:hidden;padding:0;}
+  .avatar img{width:100%;height:100%;object-fit:cover;object-position:50% 20%;border-radius:inherit;display:block;}
+  .profile h1{font-size:clamp(24px,4vw,32px);font-weight:600;color:var(--head);line-height:1.2;margin-bottom:10px;}
+  .pill{display:inline-block;font-size:12.5px;padding:4px 14px;border-radius:10px;background:var(--card-2);color:var(--head);border:1px solid var(--line);}
+  .pill.sub{margin-left:6px;color:var(--muted);}
+  .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;}
+  .chip{
+    display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:var(--accent);
+    background:var(--card-2);border:1px solid var(--line);padding:8px 16px;border-radius:12px;cursor:pointer;font-family:inherit;
+    transition:border-color .15s,transform .15s;
   }
-  .btn.primary{background:var(--accent);border-color:var(--accent);color:#fff;}
-  .btn.primary:hover{background:transparent;color:var(--accent);}
-  .btn.ghost{color:var(--text);}
-  .btn.ghost:hover{border-color:var(--accent);color:var(--accent);}
-
-  /* title block panel */
-  .title-block{border:1px solid var(--border-strong);border-top:2px solid var(--accent);background:var(--bg);position:relative;}
-  .tb-row{display:grid;grid-template-columns:34% 66%;border-bottom:1px solid var(--border);}
-  .tb-row:last-child{border-bottom:none;}
-  .tb-label{font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;color:var(--text-faint);text-transform:uppercase;padding:12px 14px;border-right:1px solid var(--border);}
-  .tb-value{font-size:14px;padding:12px 14px;color:var(--text);}
-  .tb-value a:hover{color:var(--accent);}
-
-  /* hero 3D strip */
-  .hero-3d-wrap{margin-top:48px;position:relative;}
-  #hero3d{width:100%;height:260px;display:block;}
-  .hero-3d-caption{font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;color:var(--text-faint);margin-top:10px;}
-  @media (max-width:820px){#hero3d{height:190px;}}
-
-  /* ---------- ABOUT ---------- */
-  .about-text{color:var(--text-dim);font-size:16.5px;}
-  .about-text p + p{margin-top:16px;}
-  .about-text strong{color:var(--text);font-weight:600;}
-
-  /* ---------- FOCUS ---------- */
-  .focus-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-top:10px;}
-  @media (max-width:820px){.focus-grid{grid-template-columns:1fr;}}
-  .focus-card{background:var(--bg);padding:30px 26px;}
-  .focus-card h3{font-family:var(--font-display);font-size:19px;margin-bottom:10px;}
-  .focus-card p{color:var(--text-dim);font-size:14.5px;margin-bottom:14px;}
-  .focus-card ul{list-style:none;font-family:var(--font-mono);font-size:12.5px;color:var(--text-faint);display:flex;flex-wrap:wrap;gap:8px 0;}
-  .focus-card li:not(:last-child)::after{content:" · ";color:var(--text-faint);}
-
-  /* ---------- EXPERIENCE ---------- */
-  .timeline{border-left:1px solid var(--border-strong);margin-top:12px;}
-  .tl-item{position:relative;padding:0 0 40px 30px;}
-  .tl-item:last-child{padding-bottom:0;}
-  .tl-item::before{
-    content:"";position:absolute;left:-5px;top:4px;width:9px;height:9px;border-radius:50%;
-    background:var(--bg);border:2px solid var(--text-faint);
+  .chip:hover{border-color:var(--accent);transform:translateY(-1px);}
+  .chip.solid{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);}
+  .contacts-toggle{
+    position:absolute;top:0;right:0;border-radius:0 var(--r) 0 var(--r);border:1px solid var(--line);border-top:none;border-right:none;
+    background:var(--card-2);color:var(--accent);font:500 12.5px var(--ff);padding:8px 16px;cursor:pointer;
   }
-  .tl-item.current::before{border-color:var(--accent);background:var(--accent);}
-  .tl-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px;margin-bottom:6px;}
-  .tl-role{font-family:var(--font-display);font-weight:600;font-size:18px;}
-  .tl-org{color:var(--text-dim);font-size:14.5px;}
-  .tl-date{font-family:var(--font-mono);font-size:12px;color:var(--text-faint);margin-left:auto;white-space:nowrap;}
-  .tl-current-tag{font-family:var(--font-mono);font-size:10.5px;color:var(--accent);border:1px solid var(--accent);padding:2px 7px;letter-spacing:.05em;}
-  .tl-bullets{list-style:none;color:var(--text-dim);font-size:14.5px;}
-  .tl-bullets li{position:relative;padding-left:16px;margin-top:6px;}
-  .tl-bullets li::before{content:"–";position:absolute;left:0;color:var(--text-faint);}
+  .contacts-toggle:hover{background:var(--accent-soft);}
+  .quick{display:none;margin-top:22px;padding-top:20px;border-top:1px solid var(--line);grid-template-columns:repeat(2,1fr);gap:14px 20px;}
+  .quick.open{display:grid;}
+  .quick .k{font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);}
+  .quick .v{font-size:13.5px;color:var(--head);word-break:break-word;}
+  .quick a.v:hover{color:var(--accent);}
 
-  .edu-block{margin-top:44px;border-top:1px dashed var(--border);padding-top:28px;}
-  .edu-block h4{font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--text-faint);margin-bottom:10px;}
-  .edu-block .deg{font-family:var(--font-display);font-size:17px;font-weight:600;}
-  .edu-block .school{color:var(--text-dim);font-size:14.5px;margin-top:2px;}
-  .edu-block .date{font-family:var(--font-mono);font-size:12px;color:var(--text-faint);margin-top:4px;}
+  @media (max-width:640px){
+    .profile{padding:34px 20px 22px;}
+    .profile-main{flex-direction:column;align-items:flex-start;gap:18px;}
+    .avatar{flex-basis:auto;width:88px;height:88px;font-size:24px;border-radius:24px;}
+    .quick{grid-template-columns:1fr;}
+    .pill.sub{margin:8px 0 0;}
+    .avail{left:20px;transform:none;}
+    .hide-sm{display:none;}
+    #themeLabel{display:none;}
+    .theme{padding:9px 10px;}
+  }
 
-  /* ---------- STACK ---------- */
-  .stack-groups{display:grid;grid-template-columns:1fr 1fr;gap:30px 50px;margin-top:14px;}
-  @media (max-width:640px){.stack-groups{grid-template-columns:1fr;}}
-  .stack-group h4{font-family:var(--font-mono);font-size:11.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--text-faint);margin-bottom:12px;}
-  .tags{display:flex;flex-wrap:wrap;gap:8px;}
-  .tag{font-family:var(--font-mono);font-size:12.5px;padding:6px 10px;border:1px solid var(--border);color:var(--text-dim);transition:border-color .15s,color .15s;}
-  .tag:hover{border-color:var(--accent);color:var(--accent);}
+  /* ---------- PANELS ---------- */
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:34px 28px;box-shadow:var(--shadow);margin-bottom:20px;}
+  .js .panel{display:none;}
+  .js .panel.active{display:block;animation:fade .35s ease;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+  @media (max-width:640px){.panel{padding:26px 18px;}}
+  h2.title{font-size:clamp(26px,4vw,32px);font-weight:600;color:var(--head);line-height:1.2;position:relative;padding-bottom:14px;margin-bottom:22px;}
+  h2.title::after{content:"";position:absolute;left:0;bottom:0;width:40px;height:4px;border-radius:4px;background:var(--accent);}
+  h3.sub-title{font-size:21px;font-weight:600;color:var(--head);margin:34px 0 16px;display:flex;align-items:center;gap:14px;}
+  h3.sub-title:first-of-type{margin-top:0;}
+  .ico{
+    width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex:0 0 40px;
+    color:var(--accent);background:var(--card-2);border:1px solid var(--line);
+  }
+  .about-text p{margin-bottom:14px;}
+  .about-text strong{color:var(--head);font-weight:600;}
+  .intro{color:var(--muted);margin:-8px 0 20px;max-width:64ch;}
 
-  /* ---------- PROJECTS ---------- */
-  .proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);margin-top:10px;}
-  @media (max-width:720px){.proj-grid{grid-template-columns:1fr;}}
-  .proj-card{background:var(--bg);padding:26px;display:flex;flex-direction:column;min-height:170px;}
-  .proj-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;}
-  .proj-id{font-family:var(--font-mono);font-size:11px;color:var(--text-faint);}
-  .proj-card h3{font-family:var(--font-display);font-size:18px;margin-bottom:6px;}
-  .proj-org{font-size:13px;color:var(--text-faint);margin-bottom:10px;}
-  .proj-desc{color:var(--text-dim);font-size:14px;margin-bottom:14px;flex:1;}
-  .proj-link{font-family:var(--font-mono);font-size:12.5px;color:var(--accent);align-self:flex-start;border-bottom:1px solid transparent;}
-  .proj-link:hover{border-color:var(--accent);}
+  /* stats */
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:26px 0 0;}
+  .stat{background:var(--card-2);border:1px solid var(--line);border-radius:var(--r-sm);padding:16px 18px;}
+  .stat b{display:block;font-size:26px;font-weight:700;color:var(--accent);line-height:1.1;}
+  .stat span{font-size:12.5px;color:var(--muted);line-height:1.4;display:block;margin-top:6px;}
+  @media (max-width:640px){.stats{grid-template-columns:1fr;}}
 
-  /* ---------- WRITING ---------- */
-  .write-list{margin-top:14px;border-top:1px solid var(--border);}
-  .write-item{display:flex;gap:24px;padding:22px 0;border-bottom:1px solid var(--border);align-items:baseline;flex-wrap:wrap;}
-  .write-date{font-family:var(--font-mono);font-size:12px;color:var(--text-faint);width:76px;flex-shrink:0;}
-  .write-title{font-family:var(--font-display);font-size:16.5px;font-weight:600;flex:1;min-width:200px;}
-  .write-title:hover{color:var(--accent);}
-  .write-tag{font-family:var(--font-mono);font-size:11px;color:var(--text-faint);border:1px solid var(--border);padding:3px 8px;}
-  .pub-note{margin-top:26px;padding-top:22px;border-top:1px dashed var(--border);font-size:14px;color:var(--text-dim);}
-  .pub-note a:hover{color:var(--accent);}
+  /* service cards */
+  .services{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+  @media (max-width:760px){.services{grid-template-columns:1fr;}}
+  .card{background:var(--card-2);border:1px solid var(--line);border-radius:var(--r-sm);padding:20px;transition:border-color .15s,transform .15s;}
+  .card:hover{border-color:color-mix(in srgb,var(--accent) 55%,var(--line));}
+  .card h4{font-size:16px;font-weight:600;color:var(--head);margin:14px 0 6px;}
+  .card p{font-size:13.5px;color:var(--muted);line-height:1.65;}
+  .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px;}
+  .tag{font-size:11.5px;padding:3px 10px;border-radius:8px;background:var(--bg);border:1px solid var(--line);color:var(--text);}
 
-  /* ---------- CONTACT ---------- */
-  .contact-grid{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--border-strong);margin-top:10px;}
-  @media (max-width:820px){.contact-grid{grid-template-columns:1fr 1fr;}}
-  .c-field{padding:18px 18px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);}
-  .c-field:nth-child(4n){border-right:none;}
-  @media (max-width:820px){.c-field:nth-child(2n){border-right:none;}}
-  .c-label{font-family:var(--font-mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--text-faint);margin-bottom:8px;}
-  .c-value{font-size:14px;}
-  .c-value a:hover{color:var(--accent);}
+  /* tech tree */
+  .tree{margin-top:30px;background:var(--card-2);border:1px solid var(--line);border-radius:var(--r-sm);padding:10px 14px 14px;}
+  #hero3d{width:100%;height:220px;display:block;}
+  .tree-cap{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-align:center;}
 
-  footer{padding:36px 0;}
-  .foot-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-family:var(--font-mono);font-size:11.5px;color:var(--text-faint);}
+  /* timeline */
+  .timeline{position:relative;margin-left:19px;padding-left:34px;border-left:1px solid var(--line);}
+  .tl{position:relative;background:var(--card-2);border:1px solid var(--line);border-radius:var(--r-sm);padding:16px 20px;margin-bottom:14px;}
+  .tl:last-child{margin-bottom:0;}
+  .tl::before{content:"";position:absolute;left:-40px;top:24px;width:11px;height:11px;border-radius:50%;background:var(--bg);border:2px solid var(--accent);}
+  .tl.current{border-color:color-mix(in srgb,var(--accent) 50%,var(--line));}
+  .tl.current::before{background:var(--accent);}
+  .tl h4{font-size:15.5px;font-weight:600;color:var(--head);line-height:1.4;}
+  .tl .org{font-size:13.5px;color:var(--text);}
+  .tl .when{font-size:12.5px;color:var(--accent);font-weight:500;margin:2px 0 8px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;}
+  .badge{font-size:10px;font-weight:600;letter-spacing:.06em;padding:1px 8px;border-radius:999px;background:var(--accent-soft);color:var(--accent);border:1px solid color-mix(in srgb,var(--accent) 45%,transparent);}
+  .tl ul{list-style:none;font-size:13.5px;color:var(--muted);}
+  .tl li{position:relative;padding-left:16px;margin-top:5px;line-height:1.6;}
+  .tl li::before{content:"";position:absolute;left:0;top:.72em;width:5px;height:5px;border-radius:50%;background:var(--accent);opacity:.8;}
+  .note{font-size:13.5px;color:var(--muted);margin-top:14px;}
+  .note a{color:var(--accent);}
+  .note a:hover{text-decoration:underline;}
+
+  /* skills */
+  .skill-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+  @media (max-width:640px){.skill-grid{grid-template-columns:1fr;}}
+  .skill-grid .card h4{margin:0 0 4px;}
+  .skill-grid .tags{margin-top:12px;}
+
+  /* project cards */
+  .grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+  @media (max-width:700px){.grid2{grid-template-columns:1fr;}}
+  .grid2.odd .card:last-child{grid-column:1 / -1;}
+  .card.proj{display:flex;flex-direction:column;}
+  .card.proj .pid{font-size:11px;font-weight:500;letter-spacing:.08em;color:var(--accent);}
+  .card.proj h4{margin:6px 0 2px;font-size:17px;}
+  .card.proj .meta{font-size:12.5px;color:var(--muted);margin-bottom:10px;}
+  .card.proj p{flex:1;}
+  .stat-line{font-size:12.5px;font-weight:500;color:var(--head);margin-top:14px;}
+  .stat-line em{font-style:normal;color:var(--accent);}
+  .links{display:flex;gap:16px;flex-wrap:wrap;margin-top:14px;}
+  .links a{font-size:12.5px;font-weight:500;color:var(--accent);border-bottom:1px solid transparent;}
+  .links a:hover{border-color:var(--accent);}
+
+  /* writing */
+  .posts{display:grid;gap:12px;}
+  .post{display:flex;gap:18px;align-items:center;background:var(--card-2);border:1px solid var(--line);border-radius:var(--r-sm);padding:16px 20px;transition:border-color .15s,transform .15s;}
+  .post:hover{border-color:var(--accent);transform:translateY(-1px);}
+  .post .d{flex:0 0 86px;font-size:12px;color:var(--muted);}
+  .post .t{flex:1;font-size:15px;font-weight:500;color:var(--head);line-height:1.5;}
+  .post .src{font-size:11px;padding:2px 10px;border-radius:8px;border:1px solid var(--line);color:var(--accent);white-space:nowrap;}
+  @media (max-width:640px){.post{flex-wrap:wrap;gap:6px 12px;}.post .d{flex-basis:100%;}.post .t{flex-basis:100%;}}
+
+  /* contact */
+  .contact-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+  @media (max-width:640px){.contact-grid{grid-template-columns:1fr;}}
+  .contact-grid .card{display:flex;gap:14px;align-items:center;}
+  .contact-grid .card:last-child:nth-child(odd){grid-column:1 / -1;}
+  .contact-grid .k{font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);}
+  .contact-grid .v{font-size:14px;color:var(--head);word-break:break-word;}
+  .contact-grid a.v:hover{color:var(--accent);}
+
+  footer{text-align:center;font-size:12px;color:var(--muted);margin-top:8px;}
+
+  /* ---------- BOTTOM NAV ---------- */
+  .dock{
+    position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:50;
+    width:min(760px,calc(100% - 24px));display:flex;align-items:center;gap:4px;
+    background:color-mix(in srgb,var(--card) 82%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    border:1px solid var(--line);border-radius:20px;padding:8px 10px;box-shadow:var(--shadow);
+  }
+  .dock nav{display:flex;gap:2px;flex:1;overflow-x:auto;scrollbar-width:none;}
+  .dock nav::-webkit-scrollbar{display:none;}
+  .dock nav a{
+    flex:0 0 auto;font-size:13.5px;font-weight:500;color:var(--text);padding:8px 14px;border-radius:12px;position:relative;white-space:nowrap;transition:color .15s;
+  }
+  .dock nav a:hover{color:var(--accent);}
+  .dock nav a.on{color:var(--accent);}
+  .dock nav a.on::after{content:"";position:absolute;left:14px;right:14px;bottom:2px;height:2px;border-radius:2px;background:var(--accent);}
+  .theme{
+    flex:0 0 auto;display:flex;align-items:center;gap:8px;font:600 12.5px var(--ff);color:var(--accent);cursor:pointer;
+    background:var(--accent-soft);border:1px solid color-mix(in srgb,var(--accent) 45%,transparent);border-radius:12px;padding:7px 12px;margin-left:4px;
+  }
+  .theme:hover{background:color-mix(in srgb,var(--accent) 20%,transparent);}
+
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *{animation:none !important;transition:none !important;}
+  }
 </style>
 </head>
 <body>
+<div class="page">
 
-<header>
-  <div class="wrap navbar">
-    <div class="brand"><span class="mark">MMH</span> Mozzammel Haque</div>
-    <nav class="links">
-      <a href="#about">About</a>
-      <a href="#focus">Focus</a>
-      <a href="#experience">Experience</a>
-      <a href="#stack">Stack</a>
-      <a href="#projects">Projects</a>
-      <a href="#writing">Writing</a>
-      <a href="#contact">Contact</a>
-    </nav>
-    <div class="nav-right">
-      <button class="theme-btn" id="themeBtn" aria-label="Toggle light and dark theme">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>
-      </button>
-      <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
-      </button>
-    </div>
-  </div>
-  <div class="mobile-panel" id="mobilePanel">
-    <a href="#about">About</a>
-    <a href="#focus">Focus</a>
-    <a href="#experience">Experience</a>
-    <a href="#stack">Stack</a>
-    <a href="#projects">Projects</a>
-    <a href="#writing">Writing</a>
-    <a href="#contact">Contact</a>
-  </div>
-</header>
+  <!-- PROFILE CARD -->
+  <header class="profile" id="top">
+    <span class="avail"><i></i>Open to <span class="hide-sm">relevant&nbsp;</span>opportunities</span>
+    <button class="contacts-toggle" id="contactsBtn" aria-expanded="false" aria-controls="quick">Show Contacts</button>
 
-<main>
-
-  <!-- HERO -->
-  <section class="sheet hero" id="home">
-    <div class="wrap hero-grid">
+    <div class="profile-main">
+      <div class="avatar"><img src="assets/me.jpg" alt="Portrait of Muhammad Mozzammel Haque" width="480" height="480" decoding="async"></div>
       <div>
-        <div class="avail"><span class="dot"></span>SHEET 01 — PROFILE</div>
-        <h1>Muhammad<br>Mozzammel Haque</h1>
-        <div class="role-line">Senior React Native Engineer</div>
-        <p class="lede">Building mobile and web products end-to-end — from native performance work down to the microservices behind them. Based in Dhaka, Bangladesh.</p>
-        <div class="cta-row">
-          <a class="btn primary" href="#contact">Get in touch</a>
-          <a class="btn ghost" href="https://github.com/mozzammeluiu" target="_blank" rel="noopener">View GitHub</a>
-          <a class="btn ghost" href="https://medium.com/@mozzammeluiu" target="_blank" rel="noopener">Read Medium</a>
+        <h1>Muhammad Mozzammel Haque</h1>
+        <span class="pill">Full-Stack Engineer &amp; Writer</span><span class="pill sub">Dhaka, Bangladesh</span>
+        <div class="actions">
+          <a class="chip solid" href="https://github.com/mozzammel-haque" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>
+            GitHub
+          </a>
+          <a class="chip" href="https://medium.com/@mozzammel-haque" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v14H4zM8 9h8M8 13h8M8 16h5"/></svg>
+            Medium
+          </a>
+          <a class="chip" href="https://www.mozzammel.dev/" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg>
+            Portfolio
+          </a>
+          <a class="chip" href="#contact" data-go="contact">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18v12H3zM3 7l9 6 9-6"/></svg>
+            Get in touch
+          </a>
         </div>
       </div>
-      <div class="title-block">
-        <div class="tb-row"><div class="tb-label">Role</div><div class="tb-value">Senior React Native Engineer</div></div>
-        <div class="tb-row"><div class="tb-label">Company</div><div class="tb-value">Arogga Limited</div></div>
-        <div class="tb-row"><div class="tb-label">Location</div><div class="tb-value">Dhaka, Bangladesh</div></div>
-        <div class="tb-row"><div class="tb-label">Focus</div><div class="tb-value">Mobile · Backend · Systems</div></div>
-        <div class="tb-row"><div class="tb-label">Experience</div><div class="tb-value">6+ years</div></div>
-        <div class="tb-row"><div class="tb-label">Email</div><div class="tb-value"><a href="mailto:mhaque141093@bscse.uiu.ac.bd">mhaque141093@bscse.uiu.ac.bd</a></div></div>
-      </div>
     </div>
-    <div class="wrap hero-3d-wrap">
-      <canvas id="hero3d" aria-hidden="true"></canvas>
-      <div class="hero-3d-caption">Tech Tree</div>
-    </div>
-  </section>
 
-  <!-- ABOUT -->
-  <section class="sheet" id="about">
-    <div class="wrap read">
-      <h2 class="sheet-title"><span class="no">02</span>About</h2>
+    <div class="quick" id="quick">
+      <div><div class="k">Email</div><a class="v" href="mailto:mozzammeluiu@gmail.com">mozzammeluiu@gmail.com</a></div>
+      <div><div class="k">WhatsApp</div><a class="v" href="https://wa.me/8801674831500" target="_blank" rel="noopener">+880 1674 831500</a></div>
+      <div><div class="k">LinkedIn</div><a class="v" href="https://www.linkedin.com/in/mozzammel-haque/" target="_blank" rel="noopener">mozzammel-haque</a></div>
+      <div><div class="k">Portfolio</div><a class="v" href="https://www.mozzammel.dev/" target="_blank" rel="noopener">www.mozzammel.dev</a></div>
+      <div><div class="k">Location</div><div class="v">Dhaka, Bangladesh</div></div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ABOUT -->
+    <section class="panel active" id="about" data-panel>
+      <h2 class="title">About Me</h2>
       <div class="about-text">
-        <p>I'm a <strong>Senior React Native Engineer</strong> with 6+ years of experience shipping production mobile and web applications. My work sits across two layers: the native mobile surface — performance, stability, platform quirks — and the backend systems that support it, including microservices, service communication patterns, and API design.</p>
-        <p>I'm currently building at <strong>Arogga Limited</strong> in Dhaka, leading front-end architecture for a healthcare app used across Android and iOS. Earlier, at <strong>Circle Fintech Limited</strong>, I led a front-end team building a fintech platform and a digital banking app for Jamuna Bank.</p>
-        <p>Outside of day-to-day engineering, I write on Medium about React Native, AI-assisted development, and system design — usually working through a real problem I've run into rather than covering a topic in the abstract.</p>
+        <p>I'm a <strong>Full-Stack Engineer</strong> from Dhaka with 7+ years of experience across web and mobile. My core is <strong>React Native</strong> and <strong>React</strong>, backed by back-end work in Node.js, NestJS, and Laravel. I care about the parts users never see: load times, crash rates, and the code that keeps them low.</p>
+        <p>At <strong>Arogga Limited</strong> I architected the front end of the Android and iOS app and helped a team of five launch three mobile apps in six months. Before that I led the front-end team at <strong>Circle Fintech Limited</strong> and shipped JustPay for Jamuna Bank. Most recently I took <strong>NailCanvasBD</strong> from first commit to production on my own.</p>
+        <p>Outside of work I write on Medium, mostly benchmarks and deep dives on Node.js, databases, and Rust, published in Level Up Coding and ILLUMINATION.</p>
       </div>
-    </div>
-  </section>
 
-  <!-- FOCUS -->
-  <section class="sheet" id="focus">
-    <div class="wrap">
-      <h2 class="sheet-title"><span class="no">03</span>What I build</h2>
-      <div class="focus-grid">
-        <div class="focus-card">
-          <h3>Mobile</h3>
+      <div class="stats">
+        <div class="stat"><b>7+</b><span>Years shipping web &amp; mobile products</span></div>
+        <div class="stat"><b>30%</b><span>Fewer crash and delay complaints at Arogga</span></div>
+        <div class="stat"><b>25%</b><span>Faster time-to-market across 3 app launches</span></div>
+      </div>
+
+      <h3 class="sub-title" style="margin-top:36px;">What I'm Doing</h3>
+      <div class="services">
+        <div class="card">
+          <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg></div>
+          <h4>Mobile</h4>
           <p>React Native apps for Android and iOS, with attention to native performance, crash reduction, and platform-specific debugging.</p>
-          <ul><li>React Native</li><li>Redux</li><li>New Architecture</li><li>On-device AI</li></ul>
+          <div class="tags"><span class="tag">React Native</span><span class="tag">Redux</span><span class="tag">New Architecture</span><span class="tag">On-device AI</span></div>
         </div>
-        <div class="focus-card">
-          <h3>Backend &amp; architecture</h3>
+        <div class="card">
+          <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></div>
+          <h4>Backend &amp; Architecture</h4>
           <p>Microservices and the patterns that keep them reliable — service communication, failure handling, and event-driven design.</p>
-          <ul><li>Node.js</li><li>NestJS</li><li>GraphQL</li><li>Kafka</li><li>gRPC</li><li>Docker</li></ul>
+          <div class="tags"><span class="tag">Node.js</span><span class="tag">NestJS</span><span class="tag">Laravel</span><span class="tag">GraphQL</span><span class="tag">Kafka</span><span class="tag">gRPC</span><span class="tag">Docker</span></div>
         </div>
-        <div class="focus-card">
-          <h3>Web</h3>
-          <p>Typed, componentized front ends built to scale with a growing team and codebase.</p>
-          <ul><li>React</li><li>Next.js</li><li>TypeScript</li></ul>
+        <div class="card">
+          <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg></div>
+          <h4>Web</h4>
+          <p>Typed, componentized front ends built to scale with a growing team and codebase, plus full-stack Laravel products from catalog to deployment.</p>
+          <div class="tags"><span class="tag">React</span><span class="tag">Next.js</span><span class="tag">TypeScript</span></div>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- EXPERIENCE -->
-  <section class="sheet" id="experience">
-    <div class="wrap read">
-      <h2 class="sheet-title"><span class="no">04</span>Experience</h2>
+      <div class="tree">
+        <canvas id="hero3d" aria-hidden="true"></canvas>
+        <div class="tree-cap">Tech Tree</div>
+      </div>
+    </section>
+
+    <!-- RESUME -->
+    <section class="panel" id="resume" data-panel>
+      <h2 class="title">Resume</h2>
+
+      <h3 class="sub-title">
+        <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6c-2-1.5-5-2-8-2v13c3 0 6 .5 8 2 2-1.5 5-2 8-2V4c-3 0-6 .5-8 2zM12 6v13"/></svg></span>
+        Education
+      </h3>
+      <div class="timeline">
+        <div class="tl">
+          <h4>B.Sc. in Computer Science &amp; Engineering</h4>
+          <div class="when">Feb 2014 — Dec 2019</div>
+          <div class="org">United International University, Dhaka, Bangladesh</div>
+          <ul><li>Thesis on novel class detection in concept-drifting data streams, published on IEEE Xplore.</li></ul>
+        </div>
+      </div>
+      <p class="note">Thesis publication — <em>Novel Class Detection in Concept Drifting Data Streams Using Decision Tree Leaves</em>, <a href="https://ieeexplore.ieee.org/document/8782911" target="_blank" rel="noopener">IEEE Xplore</a>.</p>
+
+      <h3 class="sub-title">
+        <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/></svg></span>
+        Experience
+      </h3>
       <div class="timeline">
 
-        <div class="tl-item current">
-          <div class="tl-head">
-            <span class="tl-role">Senior React Native Engineer</span>
-            <span class="tl-current-tag">CURRENT</span>
-            <span class="tl-date">Jan 2024 — Present</span>
-          </div>
-          <div class="tl-org">Arogga Limited, Dhaka, Bangladesh</div>
-          <ul class="tl-bullets">
+        <div class="tl">
+          <h4>Full-Stack Engineer</h4>
+          <div class="when">2026</div>
+          <div class="org">NailCanvasBD (Freelance), Dhaka, Bangladesh</div>
+          <ul>
+            <li>Built an online store for nail art and nail care products from an empty repo to production on Laravel, PHP, and MySQL.</li>
+            <li>Delivered catalog and search, cart and wishlist, customer accounts, order tracking, and support tickets.</li>
+            <li>Deployed on an Ubuntu/Nginx server with images served through ImageKit.</li>
+          </ul>
+        </div>
+
+        <div class="tl current">
+          <h4>Senior React Native Engineer</h4>
+          <div class="when">Jan 2024 — Present <span class="badge">CURRENT</span></div>
+          <div class="org">Arogga Limited, Dhaka, Bangladesh</div>
+          <ul>
             <li>Architected the Arogga app front end for Android and iOS, cutting crash- and delay-related complaints by 30% through performance work.</li>
             <li>Used Redux for state management to keep the app responsive and stable at scale.</li>
             <li>Led a team of 5 designers and developers to ship 3 mobile apps in 6 months — 25% faster time-to-market.</li>
           </ul>
         </div>
 
-        <div class="tl-item">
-          <div class="tl-head">
-            <span class="tl-role">Senior Software Engineer</span>
-            <span class="tl-date">Apr 2022 — Jan 2024</span>
-          </div>
-          <div class="tl-org">Circle Fintech Limited, Dhaka, Bangladesh</div>
-          <ul class="tl-bullets">
+        <div class="tl">
+          <h4>Senior Software Engineer</h4>
+          <div class="when">Apr 2022 — Jan 2024</div>
+          <div class="org">Circle Fintech Limited, Dhaka, Bangladesh</div>
+          <ul>
             <li>Led the front-end team, running code reviews and setting development process standards.</li>
             <li>Built the platform front end with React, GraphQL, and TypeScript.</li>
-            <li>Contributed to JustPay, a React Native banking app for Jamuna Bank.</li>
+            <li>Shipped JustPay, a React Native banking app for Jamuna Bank.</li>
           </ul>
         </div>
 
-        <div class="tl-item">
-          <div class="tl-head">
-            <span class="tl-role">Software Engineer</span>
-            <span class="tl-date">Sep 2020 — Mar 2022</span>
-          </div>
-          <div class="tl-org">Circle Fintech Limited, Dhaka, Bangladesh</div>
-          <ul class="tl-bullets">
+        <div class="tl">
+          <h4>Software Engineer</h4>
+          <div class="when">Sep 2020 — Mar 2022</div>
+          <div class="org">Circle Fintech Limited, Dhaka, Bangladesh</div>
+          <ul>
             <li>Increased app store ratings by 15% through consistent UX and performance improvements.</li>
             <li>Planned component architecture for predictable, scalable app behavior.</li>
           </ul>
         </div>
 
-        <div class="tl-item">
-          <div class="tl-head">
-            <span class="tl-role">Software Engineer</span>
-            <span class="tl-date">Nov 2019 — Aug 2020</span>
-          </div>
-          <div class="tl-org">Advanced Apps Bangladesh, Dhaka, Bangladesh</div>
-          <ul class="tl-bullets">
+        <div class="tl">
+          <h4>Full-Stack Developer (Part-time)</h4>
+          <div class="when">2020 — 2023</div>
+          <div class="org">KreativDev</div>
+          <ul>
+            <li>Built Laravel SaaS and website-builder products for Envato’s CodeCanyon marketplace: Businesso, Profilex, Superv, Coursemat, and Blogaaso.</li>
+            <li>Implemented multitenancy, subscription billing, and payment-gateway integrations across the products.</li>
+          </ul>
+        </div>
+
+        <div class="tl">
+          <h4>Software Engineer</h4>
+          <div class="when">Nov 2019 — Aug 2020</div>
+          <div class="org">Advanced Apps Bangladesh, Dhaka, Bangladesh</div>
+          <ul>
             <li>Shipped a feature that lifted user engagement by 30%, improving retention.</li>
             <li>Integrated multiple payment gateways, including PayPal, Paytm, and Razorpay.</li>
           </ul>
         </div>
 
-        <div class="tl-item">
-          <div class="tl-head">
-            <span class="tl-role">Software Developer</span>
-            <span class="tl-date">Nov 2017 — Oct 2018</span>
-          </div>
-          <div class="tl-org">Network Express of Professionals Ltd. (Netexpro), Dhaka, Bangladesh</div>
-          <ul class="tl-bullets">
+        <div class="tl">
+          <h4>Software Developer</h4>
+          <div class="when">Nov 2017 — Oct 2018</div>
+          <div class="org">Network Express of Professionals Ltd. (Netexpro), Dhaka, Bangladesh</div>
+          <ul>
             <li>Optimized user interfaces, cutting page load times by 40%.</li>
           </ul>
         </div>
 
       </div>
+    </section>
 
-      <div class="edu-block">
-        <h4>Education</h4>
-        <div class="deg">B.Sc. in Computer Science &amp; Engineering</div>
-        <div class="school">United International University, Dhaka, Bangladesh</div>
-        <div class="date">Feb 2014 — Dec 2019</div>
+    <!-- SKILLS -->
+    <section class="panel" id="skills" data-panel>
+      <h2 class="title">Skills</h2>
+      <div class="skill-grid">
+        <div class="card"><h4>Languages</h4><div class="tags"><span class="tag">TypeScript</span><span class="tag">JavaScript</span><span class="tag">PHP</span></div></div>
+        <div class="card"><h4>Mobile</h4><div class="tags"><span class="tag">React Native</span><span class="tag">Redux</span></div></div>
+        <div class="card"><h4>Web</h4><div class="tags"><span class="tag">React</span><span class="tag">Next.js</span><span class="tag">Sass (BEM)</span></div></div>
+        <div class="card"><h4>Backend</h4><div class="tags"><span class="tag">Node.js</span><span class="tag">NestJS</span><span class="tag">Laravel</span><span class="tag">Lumen</span><span class="tag">REST</span><span class="tag">GraphQL</span><span class="tag">gRPC</span><span class="tag">Kafka</span><span class="tag">Microservices</span></div></div>
+        <div class="card"><h4>Data</h4><div class="tags"><span class="tag">MySQL</span><span class="tag">MongoDB</span><span class="tag">PostgreSQL</span><span class="tag">Redis</span></div></div>
+        <div class="card"><h4>Infra &amp; Tooling</h4><div class="tags"><span class="tag">Docker</span><span class="tag">Nx</span><span class="tag">Nginx</span><span class="tag">Linux deployment</span><span class="tag">Git</span></div></div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- STACK -->
-  <section class="sheet" id="stack">
-    <div class="wrap">
-      <h2 class="sheet-title"><span class="no">05</span>Stack</h2>
-      <div class="stack-groups">
-        <div class="stack-group">
-          <h4>Languages</h4>
-          <div class="tags"><span class="tag">TypeScript</span><span class="tag">JavaScript</span><span class="tag">PHP</span></div>
-        </div>
-        <div class="stack-group">
-          <h4>Mobile</h4>
-          <div class="tags"><span class="tag">React Native</span><span class="tag">Redux</span></div>
-        </div>
-        <div class="stack-group">
-          <h4>Web</h4>
-          <div class="tags"><span class="tag">React</span><span class="tag">Next.js</span></div>
-        </div>
-        <div class="stack-group">
-          <h4>Backend</h4>
-          <div class="tags"><span class="tag">Node.js</span><span class="tag">NestJS</span><span class="tag">Laravel</span><span class="tag">Lumen</span><span class="tag">GraphQL</span><span class="tag">gRPC</span><span class="tag">Kafka</span></div>
-        </div>
-        <div class="stack-group">
-          <h4>Data</h4>
-          <div class="tags"><span class="tag">MySQL</span><span class="tag">MongoDB</span><span class="tag">PostgreSQL</span><span class="tag">Redis</span></div>
-        </div>
-        <div class="stack-group">
-          <h4>Infra &amp; tooling</h4>
-          <div class="tags"><span class="tag">Docker</span><span class="tag">Nx</span><span class="tag">Git</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
+    <!-- WORK -->
+    <section class="panel" id="work" data-panel>
+      <h2 class="title">Selected Work</h2>
+      <div class="grid2">
 
-  <!-- PROJECTS -->
-  <section class="sheet" id="projects">
-    <div class="wrap">
-      <h2 class="sheet-title"><span class="no">06</span>Projects</h2>
-      <div class="proj-grid">
-
-        <div class="proj-card">
-          <div class="proj-top"><span class="proj-id">P-01</span></div>
-          <h3>Arogga App</h3>
-          <div class="proj-org">Arogga Limited</div>
-          <p class="proj-desc">Online medicine ordering app for Android and iOS. Led front-end architecture, UI, and API integration.</p>
+        <div class="card proj">
+          <span class="pid">P-01</span>
+          <h4>NailCanvasBD</h4>
+          <div class="meta">Freelance · 2026</div>
+          <p>Online store for nail art and nail care products in Bangladesh, taken from an empty repo to production: catalog and search, cart and wishlist, customer accounts, order tracking, and support tickets. Deployed on Ubuntu/Nginx with images served through ImageKit.</p>
+          <div class="tags"><span class="tag">Laravel</span><span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">Nginx</span><span class="tag">ImageKit</span></div>
+          <div class="links"><a href="https://nailcanvasbd.com/" target="_blank" rel="noopener">nailcanvasbd.com ↗</a></div>
         </div>
 
-        <div class="proj-card">
-          <div class="proj-top"><span class="proj-id">P-02</span></div>
-          <h3>JustPay App</h3>
-          <div class="proj-org">Circle Fintech Limited, for Jamuna Bank</div>
-          <p class="proj-desc">Digital banking app built with React Native. Contributed UI design and feature/API development.</p>
+        <div class="card proj">
+          <span class="pid">P-02</span>
+          <h4>Arogga App</h4>
+          <div class="meta">Arogga Limited · 2024 — Present</div>
+          <p>Bangladesh’s primary healthcare app: medicine delivery, lab tests with home sample collection, and doctor consultations on Android and iOS. Architected the front end and tuned performance, cutting crash and delay complaints by 30%.</p>
+          <div class="stat-line"><em>1M+</em> downloads · <em>3M+</em> customers · <em>64</em> districts</div>
+          <div class="tags"><span class="tag">React Native</span><span class="tag">Redux</span><span class="tag">TypeScript</span></div>
+          <div class="links"><a href="https://play.google.com/store/apps/details?id=com.arogga.app" target="_blank" rel="noopener">Google Play listing ↗</a></div>
         </div>
 
-        <div class="proj-card">
-          <div class="proj-top"><span class="proj-id">P-03</span></div>
-          <h3>Online Shopping in Nepal</h3>
-          <div class="proj-org">Advanced Apps Bangladesh</div>
-          <p class="proj-desc">E-commerce platform. Contributed UI design and feature/API development and integration.</p>
+        <div class="card proj">
+          <span class="pid">P-03</span>
+          <h4>JustPay App</h4>
+          <div class="meta">Circle Fintech Limited, for Jamuna Bank · 2022 — 24</div>
+          <p>Mobile banking app for Jamuna Bank. Designed UI, built features, and integrated the banking APIs.</p>
+          <div class="tags"><span class="tag">React Native</span><span class="tag">Redux</span><span class="tag">GraphQL</span></div>
         </div>
 
-        <div class="proj-card">
-          <div class="proj-top"><span class="proj-id">P-04</span></div>
-          <h3>App Bajar</h3>
-          <div class="proj-org">Advanced Apps Bangladesh</div>
-          <p class="proj-desc">App marketplace website. Contributed UI design and feature/API development and integration.</p>
+        <div class="card proj">
+          <span class="pid">P-04</span>
+          <h4>Online Shopping in Nepal</h4>
+          <div class="meta">Advanced Apps Bangladesh</div>
+          <p>E-commerce platform. Contributed UI design and feature/API development and integration.</p>
         </div>
 
-        <div class="proj-card">
-          <div class="proj-top"><span class="proj-id">OSS</span></div>
-          <h3>connect-rn-components</h3>
-          <div class="proj-org">Published npm package</div>
-          <p class="proj-desc">Open-source React Native component library published under @appscftl.</p>
-          <a class="proj-link" href="https://www.npmjs.com/package/@appscftl/connect-rn-components" target="_blank" rel="noopener">npmjs.com/package/@appscftl/connect-rn-components</a>
+        <div class="card proj">
+          <span class="pid">P-05</span>
+          <h4>App Bajar</h4>
+          <div class="meta">Advanced Apps Bangladesh</div>
+          <p>App marketplace website. Contributed UI design and feature/API development and integration.</p>
+        </div>
+
+        <div class="card proj">
+          <span class="pid">OSS</span>
+          <h4>connect-rn-components</h4>
+          <div class="meta">Published npm package</div>
+          <p>Open-source React Native component library published under @appscftl.</p>
+          <div class="links"><a href="https://www.npmjs.com/package/@appscftl/connect-rn-components" target="_blank" rel="noopener">npm package ↗</a></div>
         </div>
 
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- WRITING -->
-  <section class="sheet" id="writing">
-    <div class="wrap read">
-      <h2 class="sheet-title"><span class="no">07</span>Writing</h2>
-      <p style="color:var(--text-dim);font-size:15px;">Notes on React Native, AI-assisted development, and system design, published on Medium.</p>
+    <!-- PRODUCTS -->
+    <section class="panel" id="products" data-panel>
+      <h2 class="title">Live on CodeCanyon</h2>
+      <p class="intro">Five SaaS and website-builder products I built for KreativDev, now live on Envato’s marketplace. All run on Laravel with subscription billing and a payment-gateway layer.</p>
+      <div class="grid2 odd">
 
-      <div class="write-list">
-        <div class="write-item">
-          <span class="write-date">Jul 2026</span>
-          <a class="write-title" href="https://medium.com/@mozzammeluiu/generative-ui-the-react-pattern-thats-replacing-chatbots-in-2026-aded6ed32e26" target="_blank" rel="noopener">Generative UI: The React Pattern That's Replacing Chatbots in 2026</a>
-          <span class="write-tag">React</span>
+        <div class="card proj">
+          <span class="pid">CC-01</span>
+          <h4>Businesso</h4>
+          <div class="meta">Website builder SaaS · Full-stack Developer, KreativDev</div>
+          <p>A multitenant platform where each customer launches their own corporate, e-commerce, hotel-booking, course or charity site. Subscription packages, 19 payment gateways, custom domains and AI-generated content are built in.</p>
+          <div class="stat-line"><em>1,135</em> sales · <em>4.78</em> ★ (78 reviews)</div>
+          <div class="tags"><span class="tag">Laravel</span><span class="tag">PHP 8</span><span class="tag">Multitenancy</span><span class="tag">OpenAI</span><span class="tag">Payments</span><span class="tag">RTL</span></div>
+          <div class="links"><a href="https://codecanyon.net/item/businesso-business-website-builder-saas-multitenancy/full_screen_preview/34880110" target="_blank" rel="noopener">Live preview ↗</a><a href="https://codecanyon.net/item/businesso-business-website-builder-saas-multitenancy/34880110" target="_blank" rel="noopener">CodeCanyon page ↗</a></div>
         </div>
-        <div class="write-item">
-          <span class="write-date">Jun 2026</span>
-          <a class="write-title" href="https://medium.com/@mozzammeluiu/react-native-ai-agents-the-next-evolution-of-mobile-apps-1d960b6f736c" target="_blank" rel="noopener">React Native + AI Agents: The Next Evolution of Mobile Apps</a>
-          <span class="write-tag">React Native</span>
+
+        <div class="card proj">
+          <span class="pid">CC-02</span>
+          <h4>Profilex</h4>
+          <div class="meta">Portfolio builder SaaS · Full-stack Developer, KreativDev</div>
+          <p>Multi-user portfolio, vCard and CV builder with appointment booking, time slots and partial or full payments. Tenants get 12 portfolio templates and one-click PDF export.</p>
+          <div class="stat-line"><em>627</em> sales · <em>4.68</em> ★ (38 reviews)</div>
+          <div class="tags"><span class="tag">Laravel</span><span class="tag">Multitenancy</span><span class="tag">Booking</span><span class="tag">QR builder</span></div>
+          <div class="links"><a href="https://codecanyon.net/item/profilex-portfolio-builder-saas-multiuser-profile/full_screen_preview/33283445" target="_blank" rel="noopener">Live preview ↗</a><a href="https://codecanyon.net/item/profilex-portfolio-builder-saas-multiuser-profile/33283445" target="_blank" rel="noopener">CodeCanyon page ↗</a></div>
         </div>
-        <div class="write-item">
-          <span class="write-date">Jan 2026</span>
-          <a class="write-title" href="https://medium.com/@mozzammeluiu/16-kb-page-size-alignment-in-react-native-2026-what-it-is-and-how-to-fix-it-e9b936610611" target="_blank" rel="noopener">16 KB Page Size Alignment in React Native 2026</a>
-          <span class="write-tag">Android</span>
+
+        <div class="card proj">
+          <span class="pid">CC-03</span>
+          <h4>Superv</h4>
+          <div class="meta">Restaurant management · Full-stack Developer, KreativDev</div>
+          <p>Restaurant website and ordering system with a QR-code menu, POS, table reservations, and pickup or delivery orders. Staff roles cover kitchen and delivery, with real-time order alerts.</p>
+          <div class="stat-line"><em>451</em> sales · <em>4.82</em> ★ (28 reviews)</div>
+          <div class="tags"><span class="tag">Laravel</span><span class="tag">POS</span><span class="tag">QR menu</span><span class="tag">PWA</span></div>
+          <div class="links"><a href="https://codecanyon8.kreativdev.com/superv/" target="_blank" rel="noopener">Live preview ↗</a><a href="https://codecanyon.net/item/restaurant-website-management-with-qr-code-menu-food-order/28396210" target="_blank" rel="noopener">CodeCanyon page ↗</a></div>
         </div>
+
+        <div class="card proj">
+          <span class="pid">CC-04</span>
+          <h4>Coursemat</h4>
+          <div class="meta">Course-selling SaaS · Full-stack Developer, KreativDev</div>
+          <p>Multitenant platform for selling online courses: a drag-and-drop lesson builder, video, quiz and code lessons, certificates, coupons, and rules that enforce watching and quiz completion.</p>
+          <div class="stat-line"><em>187</em> sales · <em>5.00</em> ★ (7 reviews)</div>
+          <div class="tags"><span class="tag">Laravel</span><span class="tag">Multitenancy</span><span class="tag">LMS</span><span class="tag">Certificates</span></div>
+          <div class="links"><a href="https://codecanyon.net/item/coursemat-multitenant-course-selling-website-saas/full_screen_preview/39084749" target="_blank" rel="noopener">Live preview ↗</a><a href="https://codecanyon.net/item/coursemat-multitenant-course-selling-website-saas/39084749" target="_blank" rel="noopener">CodeCanyon page ↗</a></div>
+        </div>
+
+        <div class="card proj">
+          <span class="pid">CC-05</span>
+          <h4>Blogaaso</h4>
+          <div class="meta">Blog &amp; magazine SaaS · Full-stack Developer, KreativDev</div>
+          <p>Blog, news and magazine platform for many tenants, each on its own domain or subdomain. Ten blog templates, Gemini-powered content and image generation, and a popup builder.</p>
+          <div class="stat-line"><em>106</em> sales · <em>5.00</em> ★ (5 reviews)</div>
+          <div class="tags"><span class="tag">Laravel</span><span class="tag">Multitenancy</span><span class="tag">Gemini AI</span><span class="tag">SEO</span></div>
+          <div class="links"><a href="https://codecanyon.net/item/blogaaso-blog-website-saas-multitenancy/full_screen_preview/36248507" target="_blank" rel="noopener">Live preview ↗</a><a href="https://codecanyon.net/item/blogaaso-blog-website-saas-multitenancy/36248507" target="_blank" rel="noopener">CodeCanyon page ↗</a></div>
+        </div>
+
       </div>
+    </section>
 
-      <div class="pub-note">
-        <strong style="color:var(--text);">Thesis publication —</strong> <em>Novel Class Detection in Concept Drifting Data Streams Using Decision Tree Leaves</em>, <a href="https://ieeexplore.ieee.org/document/8782911" target="_blank" rel="noopener">IEEE Xplore</a>.
+    <!-- WRITING -->
+    <section class="panel" id="writing" data-panel>
+      <h2 class="title">Writing</h2>
+      <p class="intro">Notes from the workbench: performance, databases, Rust, and the JavaScript ecosystem. Most pieces start with a benchmark I ran myself.</p>
+      <div class="posts">
+        <a class="post" href="https://levelup.gitconnected.com/a-lock-protected-my-backend-and-still-left-2-503-requests-waiting-1f512ad1ba22" target="_blank" rel="noopener"><span class="d">26 Oct 2026</span><span class="t">A lock protected my backend and still left 2,503 requests waiting</span><span class="src">Level Up Coding</span></a>
+        <a class="post" href="https://mozzammel-haque.medium.com/on-2-cores-python-threads-made-cpu-work-19-slower-the-free-threaded-build-made-it-1-6x-faster-80332b41b16f" target="_blank" rel="noopener"><span class="d">25 Oct 2026</span><span class="t">On 2 cores, Python threads made CPU work 19% slower. The free-threaded build made it 1.6x faster</span><span class="src">Medium</span></a>
+        <a class="post" href="https://mozzammel-haque.medium.com/one-bengali-word-was-14-42-and-6-characters-long-depending-on-the-tool-388f2741e8aa" target="_blank" rel="noopener"><span class="d">24 Oct 2026</span><span class="t">One Bengali word was 14, 42 and 6 characters long, depending on the tool</span><span class="src">Medium</span></a>
+        <a class="post" href="https://levelup.gitconnected.com/sqlite-in-default-mode-starved-my-readers-and-wal-mode-had-its-own-trap-2f02d8b3dc82" target="_blank" rel="noopener"><span class="d">22 Oct 2026</span><span class="t">SQLite in default mode starved my readers, and WAL mode had its own trap</span><span class="src">Level Up Coding</span></a>
+        <a class="post" href="https://mozzammel-haque.medium.com/the-float-sum-was-fine-the-per-line-rounding-was-off-by-51-888-cents-c8a21ced3667" target="_blank" rel="noopener"><span class="d">21 Oct 2026</span><span class="t">The float sum was fine. The per-line rounding was off by 51,888 cents.</span><span class="src">Medium</span></a>
+        <a class="post" href="https://medium.com/illumination/people-start-new-goals-on-mondays-and-on-the-1st-41ee01e48386" target="_blank" rel="noopener"><span class="d">21 Oct 2026</span><span class="t">People start new goals on Mondays and on the 1st.</span><span class="src">ILLUMINATION</span></a>
       </div>
-    </div>
-  </section>
+      <p class="note"><a href="https://medium.com/@mozzammel-haque" target="_blank" rel="noopener">All articles on Medium →</a></p>
+    </section>
 
-  <!-- CONTACT -->
-  <section class="sheet" id="contact">
-    <div class="wrap">
-      <h2 class="sheet-title"><span class="no">08</span>Contact</h2>
+    <!-- CONTACT -->
+    <section class="panel" id="contact" data-panel>
+      <h2 class="title">Contact</h2>
       <div class="contact-grid">
-        <div class="c-field"><div class="c-label">Email</div><div class="c-value"><a href="mailto:mhaque141093@bscse.uiu.ac.bd">mhaque141093@bscse.uiu.ac.bd</a></div></div>
-        <div class="c-field"><div class="c-label">LinkedIn</div><div class="c-value"><a href="https://www.linkedin.com/in/muhammad-mozzammel-haque-243a3b104/" target="_blank" rel="noopener">muhammad-mozzammel-haque</a></div></div>
-        <div class="c-field"><div class="c-label">GitHub</div><div class="c-value"><a href="https://github.com/mozzammeluiu" target="_blank" rel="noopener">mozzammeluiu</a></div></div>
-        <div class="c-field"><div class="c-label">GitLab</div><div class="c-value"><a href="https://gitlab.com/mozzammeluiu093" target="_blank" rel="noopener">mozzammeluiu093</a></div></div>
-        <div class="c-field"><div class="c-label">Medium</div><div class="c-value"><a href="https://medium.com/@mozzammeluiu" target="_blank" rel="noopener">@mozzammeluiu</a></div></div>
-        <div class="c-field"><div class="c-label">Location</div><div class="c-value">Dhaka, Bangladesh</div></div>
-        <div class="c-field"><div class="c-label">Role</div><div class="c-value">Senior React Native Engineer</div></div>
-        <div class="c-field"><div class="c-label">Availability</div><div class="c-value">Open to relevant opportunities</div></div>
+        <div class="card"><span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18v12H3zM3 7l9 6 9-6"/></svg></span><div><div class="k">Email</div><a class="v" href="mailto:mozzammeluiu@gmail.com">mozzammeluiu@gmail.com</a></div></div>
+        <div class="card"><span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8.5 8.5 0 0 1-12.6 7.4L3 21l1.7-5.2A8.5 8.5 0 1 1 21 12z"/></svg></span><div><div class="k">WhatsApp</div><a class="v" href="https://wa.me/8801674831500" target="_blank" rel="noopener">+880 1674 831500</a></div></div>
+        <div class="card"><span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 11v5M8 8v.01M12 16v-5M12 13a2.5 2.5 0 0 1 5 0v3"/></svg></span><div><div class="k">LinkedIn</div><a class="v" href="https://www.linkedin.com/in/mozzammel-haque/" target="_blank" rel="noopener">mozzammel-haque</a></div></div>
+        <div class="card"><span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></span><div><div class="k">GitHub</div><a class="v" href="https://github.com/mozzammel-haque" target="_blank" rel="noopener">mozzammel-haque</a></div></div>
+        <div class="card"><span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21 3 14l2-7 2 5h10l2-5 2 7z"/></svg></span><div><div class="k">GitLab</div><a class="v" href="https://gitlab.com/mozzammel-haque" target="_blank" rel="noopener">mozzammel-haque</a></div></div>
+        <div class="card"><span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v14H4zM8 9h8M8 13h8M8 16h5"/></svg></span><div><div class="k">Medium</div><a class="v" href="https://medium.com/@mozzammel-haque" target="_blank" rel="noopener">@mozzammel-haque</a></div></div>
+        <div class="card"><span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg></span><div><div class="k">Portfolio</div><a class="v" href="https://www.mozzammel.dev/" target="_blank" rel="noopener">www.mozzammel.dev</a></div></div>
+        <div class="card"><span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span><div><div class="k">Location</div><div class="v">Dhaka, Bangladesh</div></div></div>
+        <div class="card"><span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg></span><div><div class="k">Availability</div><div class="v">Open to relevant opportunities</div></div></div>
       </div>
-    </div>
-  </section>
+    </section>
 
-</main>
+  </main>
 
-<footer>
-  <div class="wrap foot-row">
-    <span>© 2026 MUHAMMAD MOZZAMMEL HAQUE — DHAKA, BANGLADESH</span>
-    <span>SHEET 08 OF 08</span>
-  </div>
-</footer>
+  <footer>© 2026 Muhammad Mozzammel Haque — Dhaka, Bangladesh · <a href="https://www.mozzammel.dev/" target="_blank" rel="noopener" style="color:var(--accent);">www.mozzammel.dev</a></footer>
+</div>
+
+<!-- BOTTOM NAV -->
+<div class="dock">
+  <nav aria-label="Sections" id="tabs">
+    <a href="#about" data-tab="about" class="on">About</a>
+    <a href="#resume" data-tab="resume">Resume</a>
+    <a href="#skills" data-tab="skills">Skills</a>
+    <a href="#work" data-tab="work">Work</a>
+    <a href="#products" data-tab="products">Products</a>
+    <a href="#writing" data-tab="writing">Writing</a>
+    <a href="#contact" data-tab="contact">Contact</a>
+  </nav>
+  <button class="theme" id="themeBtn" type="button" aria-label="Toggle day and night theme">
+    <svg id="themeIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></svg>
+    <span id="themeLabel">Day</span>
+  </button>
+</div>
 
 <script>
-  const menuBtn = document.getElementById('menuBtn');
-  const mobilePanel = document.getElementById('mobilePanel');
-  menuBtn.addEventListener('click', () => {
-    const open = mobilePanel.classList.toggle('open');
-    menuBtn.setAttribute('aria-expanded', open);
-  });
-  mobilePanel.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-    mobilePanel.classList.remove('open');
-    menuBtn.setAttribute('aria-expanded', 'false');
-  }));
+(function(){
+  var root = document.documentElement;
+  var tabs = ['about','resume','skills','work','products','writing','contact'];
+  var legacy = { focus:'about', experience:'resume', stack:'skills', projects:'work', home:'about', top:'about' };
+  var panels = document.querySelectorAll('[data-panel]');
+  var links = document.querySelectorAll('#tabs a');
 
-  const themeBtn = document.getElementById('themeBtn');
-  themeBtn.addEventListener('click', () => {
-    document.documentElement.classList.toggle('light');
-    applyHero3dTheme();
+  function show(id, push){
+    if (legacy[id]) id = legacy[id];
+    if (tabs.indexOf(id) < 0) id = 'about';
+    panels.forEach(function(p){ p.classList.toggle('active', p.id === id); });
+    links.forEach(function(a){
+      var on = a.getAttribute('data-tab') === id;
+      a.classList.toggle('on', on);
+      if (on){ a.setAttribute('aria-current','page'); a.scrollIntoView({block:'nearest', inline:'center'}); }
+      else a.removeAttribute('aria-current');
+    });
+    if (push && location.hash !== '#' + id) history.replaceState(null, '', '#' + id);
+    window.scrollTo({ top: 0, behavior: 'auto' });
+    window.dispatchEvent(new Event('resize'));
+  }
+
+  links.forEach(function(a){
+    a.addEventListener('click', function(e){ e.preventDefault(); show(a.getAttribute('data-tab'), true); });
   });
+  document.querySelectorAll('[data-go]').forEach(function(a){
+    a.addEventListener('click', function(e){ e.preventDefault(); show(a.getAttribute('data-go'), true); });
+  });
+  window.addEventListener('hashchange', function(){ show(location.hash.slice(1), false); });
+  show(location.hash.slice(1) || 'about', false);
+
+  // contacts drawer
+  var cBtn = document.getElementById('contactsBtn');
+  var quick = document.getElementById('quick');
+  cBtn.addEventListener('click', function(){
+    var open = quick.classList.toggle('open');
+    cBtn.setAttribute('aria-expanded', open);
+    cBtn.textContent = open ? 'Hide Contacts' : 'Show Contacts';
+  });
+
+  // theme
+  var btn = document.getElementById('themeBtn');
+  var icon = document.getElementById('themeIcon');
+  var label = document.getElementById('themeLabel');
+  var MOON = '<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>';
+  var SUN = '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>';
+  function paintTheme(){
+    var dark = root.getAttribute('data-theme') !== 'light';
+    // button offers the other mode
+    label.textContent = dark ? 'Day' : 'Night';
+    icon.innerHTML = dark ? SUN : MOON;
+    var meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute('content', dark ? '#121212' : '#f3f1ec');
+    if (window.applyTreeTheme) window.applyTreeTheme();
+  }
+  btn.addEventListener('click', function(){
+    var next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    root.setAttribute('data-theme', next);
+    try{ localStorage.setItem('mmh-theme', next); }catch(e){}
+    paintTheme();
+  });
+  paintTheme();
+})();
 </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
-  let wireMat, nodeMat;
+  var wireMat, nodeMat;
 
-  function applyHero3dTheme(){
+  window.applyTreeTheme = function(){
     if(!wireMat || !nodeMat) return;
-    const styles = getComputedStyle(document.documentElement);
-    wireMat.color.set(styles.getPropertyValue('--text-faint').trim());
+    var styles = getComputedStyle(document.documentElement);
+    wireMat.color.set(styles.getPropertyValue('--muted').trim());
     nodeMat.color.set(styles.getPropertyValue('--accent').trim());
-  }
+  };
 
-  (function initHero3d(){
-    const canvas = document.getElementById('hero3d');
+  (function initTree(){
+    var canvas = document.getElementById('hero3d');
     if(!canvas || typeof THREE === 'undefined') return;
 
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var scene = new THREE.Scene();
+    var camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
     camera.position.set(0, 0, 7);
 
-    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+    var renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
 
-    const group = new THREE.Group();
+    var group = new THREE.Group();
 
-    const shellGeo = new THREE.IcosahedronGeometry(2.4, 1);
-    const wireGeo = new THREE.WireframeGeometry(shellGeo);
-    wireMat = new THREE.LineBasicMaterial({ color: 0x6E9985, transparent: true, opacity: 0.55 });
+    var shellGeo = new THREE.IcosahedronGeometry(2.4, 1);
+    var wireGeo = new THREE.WireframeGeometry(shellGeo);
+    wireMat = new THREE.LineBasicMaterial({ color: 0x8f8f95, transparent: true, opacity: 0.6 });
     group.add(new THREE.LineSegments(wireGeo, wireMat));
 
-    const nodeGeo = new THREE.IcosahedronGeometry(2.4, 0);
-    const positions = nodeGeo.attributes.position;
-    nodeMat = new THREE.MeshBasicMaterial({ color: 0xF42A41 });
-    for (let i = 0; i < positions.count; i++){
-      const node = new THREE.Mesh(new THREE.SphereGeometry(0.06, 12, 12), nodeMat);
+    var nodeGeo = new THREE.IcosahedronGeometry(2.4, 0);
+    var positions = nodeGeo.attributes.position;
+    nodeMat = new THREE.MeshBasicMaterial({ color: 0xffdb70 });
+    for (var i = 0; i < positions.count; i++){
+      var node = new THREE.Mesh(new THREE.SphereGeometry(0.06, 12, 12), nodeMat);
       node.position.set(positions.getX(i), positions.getY(i), positions.getZ(i));
       group.add(node);
     }
 
     scene.add(group);
-    applyHero3dTheme();
+    window.applyTreeTheme();
 
     function resize(){
-      const rect = canvas.getBoundingClientRect();
-      const w = rect.width || 1;
-      const h = rect.height || 1;
+      var rect = canvas.getBoundingClientRect();
+      var w = rect.width, h = rect.height;
+      if (!w || !h) return;
       renderer.setSize(w, h, false);
       camera.aspect = w / h;
       camera.updateProjectionMatrix();
+      if (reduceMotion) renderer.render(scene, camera);
     }
     resize();
     window.addEventListener('resize', resize);
@@ -625,9 +742,11 @@
     }
 
     function tick(t){
-      group.rotation.y += 0.0028;
-      group.rotation.x = Math.sin((t || 0) * 0.0003) * 0.18;
-      renderer.render(scene, camera);
+      if (canvas.offsetParent !== null){
+        group.rotation.y += 0.0028;
+        group.rotation.x = Math.sin((t || 0) * 0.0003) * 0.18;
+        renderer.render(scene, camera);
+      }
       requestAnimationFrame(tick);
     }
     requestAnimationFrame(tick);
